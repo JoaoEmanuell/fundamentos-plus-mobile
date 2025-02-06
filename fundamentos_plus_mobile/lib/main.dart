@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
+import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final _updateAssets = UpdatesAssets();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    _updateAssets.run();
     return MaterialApp(
       title: 'Fundamentos plus',
       theme: ThemeData(
