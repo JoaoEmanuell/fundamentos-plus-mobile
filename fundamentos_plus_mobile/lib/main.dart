@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/screens/cycles.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
+import 'package:fundamentos_plus_mobile/screens/search.dart';
+import 'package:fundamentos_plus_mobile/screens/settings.dart';
 import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
 
 Future<void> main() async {
@@ -20,8 +23,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routes: {"/": (context) => HomePage()},
-      initialRoute: "/",
+      routes: {
+        "/": (context) => HomePage(),
+        "/cycles": (context) => CyclesPage(),
+        "/search": (context) => SearchPage(),
+        "/settings": (context) => SettingsPage()
+      },
+      // initialRoute: "/",
+      initialRoute: "/cycles",
     );
   }
 }

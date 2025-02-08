@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 
-Widget bottomAppBarComponent({String current = "home"}) {
-  void homePress() {}
-  void cyclesPress() {}
-  void searchPress() {}
-  void settingsPress() {}
+Widget bottomAppBarComponent(BuildContext context, {String current = "home"}) {
+  void homePress() {
+    Navigator.of(context).pushNamed("/");
+  }
+
+  void cyclesPress() {
+    Navigator.of(context).pushNamed("/cycles");
+  }
+
+  void searchPress() {
+    Navigator.of(context).pushNamed("/search");
+  }
+
+  void settingsPress() {
+    Navigator.of(context).pushNamed("/settings");
+  }
 
   return BottomAppBar(
     child: Row(

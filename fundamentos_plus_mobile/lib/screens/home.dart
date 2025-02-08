@@ -77,6 +77,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         )),
-        bottomNavigationBar: bottomAppBarComponent());
+        bottomNavigationBar: bottomAppBarComponent(context));
   }
 }
