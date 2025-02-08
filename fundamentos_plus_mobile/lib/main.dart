@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
 import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
 
-void main() {
+Future<void> main() async {
   runApp(MyApp());
 }
 
