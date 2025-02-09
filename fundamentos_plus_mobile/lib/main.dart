@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 import 'package:fundamentos_plus_mobile/screens/cycles.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
+import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/screens/search.dart';
 import 'package:fundamentos_plus_mobile/screens/settings.dart';
 import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
@@ -27,7 +29,9 @@ class MyApp extends StatelessWidget {
         "/": (context) => HomePage(),
         "/cycles": (context) => CyclesPage(),
         "/search": (context) => SearchPage(),
-        "/settings": (context) => SettingsPage()
+        "/settings": (context) => SettingsPage(),
+        "/cycle": (context) => CyclePage(),
+        "/lesson": (context) => LessonPage(),
       },
       // initialRoute: "/",
       initialRoute: "/",

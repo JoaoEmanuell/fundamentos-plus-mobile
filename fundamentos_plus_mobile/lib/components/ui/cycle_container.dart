@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
+import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 
-Widget cycleContainer(int number, String title, int lessons) {
+Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
   return GestureDetector(
       onTap: () {
-        print("Container clicked $number");
+        Navigator.pushNamed(context, "/cycle",
+            arguments: CyclePageArguments(id));
       },
       child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -17,27 +21,14 @@ Widget cycleContainer(int number, String title, int lessons) {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50.0),
-                        child: Container(
-                          color: Colors.green.shade700,
-                          width: 60,
-                          height: 60,
-                          child: Center(
-                            child: Text(number.toString(),
-                                style: TextStyle(
-                                    fontSize: 28,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        )),
+                    child: circleId(id),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 150,
-                        child: Text(
+                      multilineText(
+                        220,
+                        Text(
                           title,
                           style: TextStyle(fontSize: 16),
                           maxLines: 5,

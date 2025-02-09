@@ -7,7 +7,7 @@ Widget bottomAppBarComponent(BuildContext context, {String current = "home"}) {
         current == name ? Colors.green.shade500 : Colors.green.shade300;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(routeName);
+        Navigator.of(context).pushReplacementNamed(routeName);
       },
       child: Container(
           decoration: BoxDecoration(

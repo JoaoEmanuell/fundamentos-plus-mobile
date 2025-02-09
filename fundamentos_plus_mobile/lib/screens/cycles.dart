@@ -10,11 +10,11 @@ class CyclesPage extends StatefulWidget {
 }
 
 class _CyclesPageState extends State<CyclesPage> {
-  List<Widget> _constructCyclesContainers() {
+  List<Widget> _constructCyclesContainers(BuildContext context) {
     return [
-      cycleContainer(15, "O caráter do que caminha com Cristo", 150),
-      cycleContainer(15, "O caráter do que caminha com Cristo", 150),
-      cycleContainer(15, "O caráter do que caminha com Cristo", 150)
+      cycleContainer(context, 150, "O caráter do que caminha com Cristo", 150),
+      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150),
+      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150)
     ];
   }
 
@@ -37,7 +37,7 @@ class _CyclesPageState extends State<CyclesPage> {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                ..._constructCyclesContainers(),
+                ..._constructCyclesContainers(context),
               ],
             ),
           ),

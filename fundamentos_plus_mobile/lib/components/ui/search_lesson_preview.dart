@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 
 ClipRRect searchLessonPreview(int id, String title, String description) {
   return ClipRRect(
@@ -13,9 +14,9 @@ ClipRRect searchLessonPreview(int id, String title, String description) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                    width: 250,
-                    child: Text(
+                multilineText(
+                    250,
+                    Text(
                       title,
                       style: TextStyle(fontSize: 18),
                       maxLines: 5,
