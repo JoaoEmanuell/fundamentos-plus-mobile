@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         "/settings": (context) => SettingsPage()
       },
       // initialRoute: "/",
-      initialRoute: "/cycles",
+      initialRoute: "/search",
     );
   }
 }
