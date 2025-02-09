@@ -9,6 +9,14 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool _darkModeIsEnabled = false;
+
+  void _changeDarkMode(bool value) {
+    setState(() {
+      _darkModeIsEnabled = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +27,28 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 16,
-              children: <Widget>[Text("Configurações")],
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    "Configurações",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Modo escuro: "),
+                      Switch(
+                          value: _darkModeIsEnabled,
+                          onChanged: _changeDarkMode),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         )),
