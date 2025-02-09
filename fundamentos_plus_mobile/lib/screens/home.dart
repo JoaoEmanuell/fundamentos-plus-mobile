@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,9 +31,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text.rich(TextSpan(children: [
                   WidgetSpan(
-                      child: Icon(
-                    Icons.book,
-                    color: Colors.green,
+                      child: SvgPicture.asset(
+                    "public/assets/images/icons/bible.svg",
+                    width: 18,
                   )),
                   TextSpan(
                     text:
