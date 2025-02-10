@@ -54,10 +54,7 @@ class _CyclePageState extends State<CyclePage> {
     List<GestureDetector> lessonsWidgets = [];
     final title = "Temas Panorâmicos";
     for (final lesson in _lessons) {
-      lessonsWidgets.add(lessonPreview(
-          context,
-          LessonType(lesson["id"] as int, lesson["author"] as String,
-              lesson["title"] as String, lesson["unlocked"] as bool)));
+      lessonsWidgets.add(lessonPreview(context, LessonType.fromJson(lesson)));
     }
     return Scaffold(
       body: SingleChildScrollView(
