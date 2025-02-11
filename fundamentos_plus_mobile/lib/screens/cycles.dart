@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
+import 'package:fundamentos_plus_mobile/components/ui/cycle_container.dart';
+
+class CyclesPage extends StatefulWidget {
+  const CyclesPage({super.key});
+
+  @override
+  State<CyclesPage> createState() => _CyclesPageState();
+}
+
+class _CyclesPageState extends State<CyclesPage> {
+  List<Widget> _constructCyclesContainers(BuildContext context) {
+    return [
+      cycleContainer(context, 150, "O caráter do que caminha com Cristo", 150),
+      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150),
+      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150)
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SingleChildScrollView(
+            child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 16,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  child: Text(
+                    "Ciclos",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                ..._constructCyclesContainers(context),
+              ],
+            ),
+          ),
+        )),
+        bottomNavigationBar: bottomAppBarComponent(context, current: 'cycles'));
+  }
+}

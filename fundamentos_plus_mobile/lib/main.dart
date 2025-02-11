@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:fundamentos_plus_mobile/screens/cycle.dart';
+import 'package:fundamentos_plus_mobile/screens/cycles.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
+import 'package:fundamentos_plus_mobile/screens/lesson.dart';
+import 'package:fundamentos_plus_mobile/screens/search.dart';
+import 'package:fundamentos_plus_mobile/screens/settings.dart';
 import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Plugin must be initialized before using
+  await FlutterDownloader.initialize(
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl:
+          true // option: set to false to disable working with http links (default: false)
+      );
   runApp(MyApp());
 }
 
@@ -20,7 +35,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routes: {"/": (context) => HomePage()},
+      routes: {
+        "/": (context) => HomePage(),
+        "/cycles": (context) => CyclesPage(),
+        "/search": (context) => SearchPage(),
+        "/settings": (context) => SettingsPage(),
+        "/cycle": (context) => CyclePage(),
+        "/lesson": (context) => LessonPage(),
+      },
+      // initialRoute: "/",
       initialRoute: "/",
     );
   }

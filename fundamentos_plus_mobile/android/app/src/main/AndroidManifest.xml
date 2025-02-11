@@ -2,7 +2,9 @@
     <application
         android:label="fundamentos_plus_mobile"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -38,6 +40,15 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/flutter_downloader_provider_paths"/>
+        </provider>
+                <provider
+            android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
+            android:authorities="${applicationId}.flutter_downloader.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
         </provider>
     </application>
     <!-- Required to query activities that can process text, see:
