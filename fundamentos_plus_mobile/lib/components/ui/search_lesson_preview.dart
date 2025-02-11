@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 ClipRRect searchLessonPreview(int id, String title, String description) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(8.0),
     child: Container(
-      decoration: BoxDecoration(color: Colors.grey.shade300),
+      decoration: BoxDecoration(
+          color: DarkModeController.instance.getColorScheme().secondary),
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(
@@ -25,7 +27,7 @@ ClipRRect searchLessonPreview(int id, String title, String description) {
                 Text(
                   "#$id",
                   style: TextStyle(
-                      color: Colors.green,
+                      color: DefaultColors.greenText,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 )

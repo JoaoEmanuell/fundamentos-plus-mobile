@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 Widget bottomAppBarComponent(BuildContext context, {String current = "home"}) {
   GestureDetector constructButton(
       IconData icon, String name, String routeName) {
-    final color =
-        current == name ? Colors.green.shade500 : Colors.green.shade300;
+    final color = current == name
+        ? DefaultColors.greenButton
+        : DefaultColors.secondaryGreenButton;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushReplacementNamed(routeName);
@@ -14,7 +16,7 @@ Widget bottomAppBarComponent(BuildContext context, {String current = "home"}) {
               border: Border(
                   top: BorderSide(
                       color: current == name
-                          ? Colors.green.shade500
+                          ? DefaultColors.greenButton
                           : Color.fromARGB(0, 0, 0, 0), // transparent border
                       width: 2))),
           child: Padding(

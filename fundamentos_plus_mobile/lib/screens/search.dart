@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 import 'package:fundamentos_plus_mobile/components/ui/search_lesson_preview.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -58,7 +59,10 @@ class _SearchPageState extends State<SearchPage> {
                 ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(16.0)),
                     child: Container(
-                      decoration: BoxDecoration(color: Colors.grey.shade300),
+                      decoration: BoxDecoration(
+                          color: DarkModeController.instance
+                              .getColorScheme()
+                              .secondary),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Row(
@@ -95,7 +99,10 @@ class _SearchPageState extends State<SearchPage> {
                     child: Center(
                         child: Text(
                       _textSearchHint,
-                      style: TextStyle(color: Colors.grey.shade500),
+                      style: TextStyle(
+                          color: DarkModeController.instance
+                              .getColorScheme()
+                              .onSurface),
                     ))),
                 ..._searchLessonPreviews
               ],

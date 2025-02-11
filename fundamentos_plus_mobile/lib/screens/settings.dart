@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -9,12 +10,13 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _darkModeIsEnabled = false;
+  bool _darkModeIsEnabled = DarkModeController.instance.isDartTheme;
 
   void _changeDarkMode(bool value) {
     setState(() {
       _darkModeIsEnabled = value;
     });
+    DarkModeController.instance.setTheme(value);
   }
 
   @override
@@ -43,6 +45,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       Text("Modo escuro: "),
                       Switch(
+                          activeColor: DarkModeController.instance
+                              .getColorScheme()
+                              .onPrimary,
                           value: _darkModeIsEnabled,
                           onChanged: _changeDarkMode),
                     ],

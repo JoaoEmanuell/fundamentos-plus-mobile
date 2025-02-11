@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 ClipRRect circleId(int id,
     {double width = 60,
@@ -8,7 +9,7 @@ ClipRRect circleId(int id,
   return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
-        color: Colors.green.shade700,
+        color: DefaultColors.greenButton,
         width: width,
         height: height,
         child: Center(

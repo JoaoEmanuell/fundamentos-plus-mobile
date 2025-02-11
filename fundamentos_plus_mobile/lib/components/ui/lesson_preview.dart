@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
 GestureDetector lessonPreview(BuildContext context, LessonType lesson,
     {double imageWidth = 300, double imageHeight = 200}) {
-  Color playButtonColor = (lesson.unlocked ? Colors.green : Colors.grey);
+  Color playButtonColor =
+      (lesson.unlocked ? DefaultColors.greenButton : Colors.grey);
   return GestureDetector(
     onTap: () {
       if (lesson.unlocked) {
@@ -18,7 +20,8 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
     child: ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        decoration: BoxDecoration(color: Colors.grey.shade200),
+        decoration: BoxDecoration(
+            color: DarkModeController.instance.getColorScheme().secondary),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

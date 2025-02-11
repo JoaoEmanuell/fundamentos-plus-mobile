@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 
 Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
@@ -13,7 +14,7 @@ Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: DarkModeController.instance.getColorScheme().secondary,
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -36,7 +37,8 @@ Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
                         ),
                       ),
                       Text("$lessons lições",
-                          style: TextStyle(fontSize: 16, color: Colors.green))
+                          style: TextStyle(
+                              fontSize: 16, color: DefaultColors.greenButton))
                     ],
                   )
                 ],

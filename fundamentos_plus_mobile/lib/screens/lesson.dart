@@ -3,6 +3,7 @@ import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/lesson_video.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/transcript_button.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
@@ -72,7 +73,7 @@ class _LessonPageState extends State<LessonPage> {
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.green),
+                              color: DefaultColors.greenButton),
                         )),
                   )
                 ],
@@ -89,7 +90,7 @@ class _LessonPageState extends State<LessonPage> {
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.green),
+                    color: DefaultColors.greenButton),
               ),
               transcriptButton(
                   context,
@@ -108,7 +109,7 @@ class _LessonPageState extends State<LessonPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {},
-          backgroundColor: Colors.green,
+          backgroundColor: DefaultColors.greenButton,
           tooltip: 'Iniciar lição',
           label: Center(
             child: Row(

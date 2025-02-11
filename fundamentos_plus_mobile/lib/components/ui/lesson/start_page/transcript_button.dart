@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:fundamentos_plus_mobile/components/ui/utils/show_custom_dialog.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 GestureDetector transcriptButton(
@@ -57,7 +58,7 @@ GestureDetector transcriptButton(
                 Container(
                     width: 150,
                     height: 100,
-                    decoration: BoxDecoration(color: Colors.green),
+                    decoration: BoxDecoration(color: DefaultColors.greenButton),
                     child: Center(
                       child: Icon(
                         Icons.description_outlined,

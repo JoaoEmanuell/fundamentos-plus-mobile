@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
@@ -10,7 +11,8 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
     cyclesWidget.add(Center(
         child: ClipRRect(
       child: Container(
-        decoration: BoxDecoration(color: Colors.grey),
+        decoration: BoxDecoration(
+            color: DarkModeController.instance.getColorScheme().secondary),
         child: Row(
           children: [
             Padding(
