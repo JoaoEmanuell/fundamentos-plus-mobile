@@ -101,20 +101,6 @@ class _LessonPageState extends State<LessonPage> {
         ),
       )),
       appBar: AppBar(),
-      /*floatingActionButton: GestureDetector(
-        child: Container(
-          decoration: BoxDecoration(color: Colors.green),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Icon(Icons.play_arrow_outlined),
-                Text("Iniciar Lição")
-              ],
-            ),
-          ),
-        ),
-      ),*/
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 150),

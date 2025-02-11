@@ -5,7 +5,8 @@ import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
-GestureDetector lessonPreview(BuildContext context, LessonType lesson) {
+GestureDetector lessonPreview(BuildContext context, LessonType lesson,
+    {double imageWidth = 300, double imageHeight = 200}) {
   Color playButtonColor = (lesson.unlocked ? Colors.green : Colors.grey);
   return GestureDetector(
     onTap: () {
@@ -24,8 +25,11 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson) {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                child: Image.asset(convertAuthorNameInAssetName(
-                    lesson.author, "cycles_thumbs")),
+                child: Image.asset(
+                  convertAuthorNameInAssetName(lesson.author, "cycles_thumbs"),
+                  width: imageWidth,
+                  height: imageHeight,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

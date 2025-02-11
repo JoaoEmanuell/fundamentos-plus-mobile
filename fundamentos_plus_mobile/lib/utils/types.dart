@@ -42,3 +42,36 @@ class FullLessonType {
         description: json["description"] as List<String>);
   }
 }
+
+class CycleType {
+  late bool unlocked;
+  late String title;
+  late List<LessonType> lessons;
+
+  CycleType(
+      {required this.unlocked, required this.title, required this.lessons});
+
+  factory CycleType.fromJson(Map<String, dynamic> json) {
+    List<LessonType> lessons = [];
+    for (final lesson in json["lessons"]) {
+      lessons.add(LessonType.fromJson(lesson));
+    }
+    return CycleType(
+        unlocked: json["unlocked"] as bool,
+        title: json["title"] as String,
+        lessons: lessons);
+  }
+}
+
+class CyclesType {
+  late Map<String, CycleType> cycles;
+  CyclesType({required this.cycles});
+  factory CyclesType.fromJson(Map<String, dynamic> json) {
+    Map<String, CycleType> formattedCycles = {};
+
+    for (final key in json.keys) {
+      formattedCycles[key] = CycleType.fromJson(json[key]);
+    }
+    return CyclesType(cycles: formattedCycles);
+  }
+}

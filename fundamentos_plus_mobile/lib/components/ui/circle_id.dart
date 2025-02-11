@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 ClipRRect circleId(int id,
-    {double width = 60, double height = 60, double fontSize = 28}) {
+    {double width = 60,
+    double height = 60,
+    double fontSize = 28,
+    double borderRadius = 50.0}) {
   return ClipRRect(
-      borderRadius: BorderRadius.circular(50.0),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
         color: Colors.green.shade700,
         width: width,
