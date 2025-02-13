@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 import 'package:fundamentos_plus_mobile/components/ui/search_lesson_preview.dart';
+import 'package:fundamentos_plus_mobile/components/ui/utils/up_button_widget.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
@@ -61,7 +62,6 @@ class _SearchPageState extends State<SearchPage> {
         _addSearchLessonForPreviews(lesson, context);
         lessonCount++;
       }
-      print(lessonCount);
       if (lessonCount == 0) {
         setState(() {
           _visibleTextSearchHint = true;
@@ -85,6 +85,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     statusButton = _defaultStatus(context);
     statusText = _textWidgetStatus("Busque por uma palavra chave...");
+    final upButton = upButtonWidget(_visibleUpButton, _scrollController);
     return Scaffold(
       body: SingleChildScrollView(
           controller: _scrollController,
@@ -134,6 +135,7 @@ class _SearchPageState extends State<SearchPage> {
                                         _searchLessonPreviews.clear();
                                         _visibleTextSearchHint = true;
                                         statusButton = _defaultStatus(context);
+                                        _visibleUpButton = false;
                                       });
                                     },
                                     child: Icon(Icons.cancel_outlined,
@@ -154,21 +156,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           )),
       bottomNavigationBar: bottomAppBarComponent(context, current: 'search'),
-      floatingActionButton: Visibility(
-        visible: _visibleUpButton,
-        child: FloatingActionButton(
-          onPressed: () => {
-            _scrollController.animateTo(0,
-                duration: Duration(seconds: 2), curve: Curves.linear)
-          },
-          backgroundColor:
-              DarkModeController.instance.getColorScheme().secondary,
-          child: Icon(
-            Icons.arrow_upward_outlined,
-            color: DefaultColors.greenButton,
-          ),
-        ),
-      ),
+      floatingActionButton: upButton,
     );
   }
 }
