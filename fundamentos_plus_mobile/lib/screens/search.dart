@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
             style: TextStyle(color: DefaultColors.greenText)));
   }
 
-  void _search(String value, BuildContext context) {
+  void _search(String value, BuildContext context) async {
     value = value.trim();
     _searchLessonPreviews.clear();
 
@@ -53,23 +53,32 @@ class _SearchPageState extends State<SearchPage> {
         statusButton = CircularProgressIndicator(
           color: DefaultColors.greenButton,
         );
-        List<LessonSearchResult> lessons =
-            DataController.dataManagerInstance.search(value);
         _visibleUpButton = true;
-
-        if (lessons.isEmpty) {
+      });
+      int lessonCount = 0;
+      await for (final lesson
+          in DataController.dataManagerInstance.search(value)) {
+        _addSearchLessonForPreviews(lesson, context);
+        lessonCount++;
+      }
+      print(lessonCount);
+      if (lessonCount == 0) {
+        setState(() {
           _visibleTextSearchHint = true;
           statusText = _textWidgetStatus("Nenhuma foi lição encontrada!");
           _visibleUpButton = false;
-          return;
-        }
-        _visibleTextSearchHint = false;
-        for (final lesson in lessons) {
-          _searchLessonPreviews.add(searchLessonPreview(
-              context, lesson.id, lesson.title, lesson.description));
-        }
-      });
+        });
+      }
     }
+  }
+
+  void _addSearchLessonForPreviews(
+      LessonSearchResult lesson, BuildContext context) {
+    setState(() {
+      _visibleTextSearchHint = false;
+      _searchLessonPreviews.add(searchLessonPreview(
+          context, lesson.id, lesson.title, lesson.description));
+    });
   }
 
   @override

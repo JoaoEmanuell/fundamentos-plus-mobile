@@ -79,41 +79,34 @@ class DataManager {
     throw Exception("Lesson not found!");
   }
 
-  List<LessonSearchResult> search(String query) {
+  Stream<LessonSearchResult> search(String query) async* {
     Directory lessonsDir = Directory("${_assets.path}/data/lessons/");
     query = clearQueryStrings(query).trim();
     if (query == "") {
-      return [];
+      return;
     }
     if (isNumeric(query)) {
-      return _simpleSearch(query, lessonsDir);
-    }
-    return _deepSearch(query, lessonsDir);
-  }
-
-  List<LessonSearchResult> _simpleSearch(String id, Directory lessonsDir) {
-    List<LessonSearchResult> lessons = [];
-    for (int i = 0; i != lessonsDir.listSync().length; i++) {
-      if (i.toString().contains(id)) {
-        File lessonFile = File("${lessonsDir.path}$i.min.json");
-        lessons.add(LessonSearchResult.fromJson(
-            jsonDecode(lessonFile.readAsStringSync()), i));
+      // simple search
+      for (int i = 0; i != lessonsDir.listSync().length; i++) {
+        if (i.toString().contains(query)) {
+          File lessonFile = File("${lessonsDir.path}$i.min.json");
+          yield LessonSearchResult.fromJson(
+              jsonDecode(lessonFile.readAsStringSync()), i);
+        }
+      }
+    } else {
+      // deep search
+      for (final lesson in lessonsDir.listSync()) {
+        File lessonFile = File(lesson.path);
+        String content = lessonFile.readAsStringSync();
+        if (content.contains(query)) {
+          String filename = lessonFile.path.split("/").last;
+          yield LessonSearchResult.fromJson(jsonDecode(content),
+              int.parse(filename.replaceAll(".min.json", "")));
+        }
       }
     }
-    return lessons;
-  }
-
-  List<LessonSearchResult> _deepSearch(String query, Directory lessonsDir) {
-    List<LessonSearchResult> lessons = [];
-    for (final lesson in lessonsDir.listSync()) {
-      File lessonFile = File(lesson.path);
-      String content = lessonFile.readAsStringSync();
-      if (content.contains(query)) {
-        String filename = lessonFile.path.split("/").last;
-        lessons.add(LessonSearchResult.fromJson(jsonDecode(content),
-            int.parse(filename.replaceAll(".min.json", ""))));
-      }
-    }
-    return lessons;
+    return;
+    //return _deepSearch(query, lessonsDir);
   }
 }
