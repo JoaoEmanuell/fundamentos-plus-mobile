@@ -5,11 +5,12 @@ ClipRRect circleId(int id,
     {double width = 60,
     double height = 60,
     double fontSize = 28,
-    double borderRadius = 50.0}) {
+    double borderRadius = 50.0,
+    bool activated = true}) {
   return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
-        color: DefaultColors.greenButton,
+        color: activated ? DefaultColors.greenButton : Colors.grey,
         width: width,
         height: height,
         child: Center(

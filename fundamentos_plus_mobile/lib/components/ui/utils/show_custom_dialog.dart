@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 Future<void> showCustomDialog(
     String title, String text, BuildContext context) async {
@@ -7,17 +8,28 @@ Future<void> showCustomDialog(
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(title),
+        title: Text(title,
+            style: TextStyle(
+                color: DarkModeController.instance.getColorScheme().onSurface)),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text(text),
+              Text(text,
+                  style: TextStyle(
+                      color: DarkModeController.instance
+                          .getColorScheme()
+                          .onSurface)),
             ],
           ),
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('OK'),
+            child: Text(
+              'OK',
+              style: TextStyle(
+                  color:
+                      DarkModeController.instance.getColorScheme().onSurface),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },

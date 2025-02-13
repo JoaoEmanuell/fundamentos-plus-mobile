@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 import 'package:fundamentos_plus_mobile/components/ui/cycle_container.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 
 class CyclesPage extends StatefulWidget {
   const CyclesPage({super.key});
@@ -11,11 +12,14 @@ class CyclesPage extends StatefulWidget {
 
 class _CyclesPageState extends State<CyclesPage> {
   List<Widget> _constructCyclesContainers(BuildContext context) {
-    return [
-      cycleContainer(context, 150, "O caráter do que caminha com Cristo", 150),
-      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150),
-      cycleContainer(context, 1, "O caráter do que caminha com Cristo", 150)
-    ];
+    List<Widget> cyclesContainer = [];
+    final cycles = DataController.dataManagerInstance.getCycles().cycles;
+    for (final cycle in cycles.keys) {
+      final cycleData = cycles[cycle]!;
+      cyclesContainer.add(cycleContainer(context, int.parse(cycle),
+          cycleData.title, cycleData.lessons.length, cycleData.unlocked));
+    }
+    return cyclesContainer;
   }
 
   @override

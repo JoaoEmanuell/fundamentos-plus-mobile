@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson_preview.dart';
-import 'package:fundamentos_plus_mobile/utils/types.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 
 class CyclePageArguments {
   late int id;
@@ -15,46 +15,15 @@ class CyclePage extends StatefulWidget {
 }
 
 class _CyclePageState extends State<CyclePage> {
-  final _lessons = [
-    {
-      "id": 1,
-      "title": "O conselho de Deus",
-      "author": "Edmar Ferreira",
-      "unlocked": true
-    },
-    {
-      "id": 2,
-      "title": "Aprender, crescer e servir",
-      "author": "Marcos Moraes",
-      "unlocked": true
-    },
-    {
-      "id": 3,
-      "title": "Por que Jesus veio ao mundo?",
-      "author": "Manoel Rocha",
-      "unlocked": true
-    },
-    {
-      "id": 4,
-      "title": "O nascimento da igreja",
-      "author": "Marcos Moraez", // test incorrect author name
-      "unlocked": true
-    },
-    {
-      "id": 5,
-      "title": "Porta, caminho e alvo",
-      "author": "Marcos Moraes",
-      "unlocked": false // test unlocked lesson
-    }
-  ]; // example for cycle 1
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as CyclePageArguments;
     List<GestureDetector> lessonsWidgets = [];
-    final title = "Temas Panorâmicos";
-    for (final lesson in _lessons) {
-      lessonsWidgets.add(lessonPreview(context, LessonType.fromJson(lesson)));
+    final cycle = DataController.dataManagerInstance.getCycle(args.id);
+    final title = cycle.title;
+    for (final lesson in cycle.lessons) {
+      lessonsWidgets.add(lessonPreview(context, lesson));
     }
     return Scaffold(
       body: SingleChildScrollView(

@@ -5,12 +5,12 @@ String convertAuthorNameInAssetName(String author, String type) {
     'Edmar Ferreira': 'edmar-ferreira.webp',
     'Eliseu Moreira': 'eliseu-moreira.webp',
     'Gilberto Bajo': 'gilberto-bajo.webp',
-    'Hélio Azevedo': 'hélio-azevedo.webp',
+    'Hélio Azevedo': 'helio-azevedo.webp',
     'João Bium': 'joao-bium.webp',
     'Manoel Rocha': 'manoel-rocha.webp',
     'Marcos Moraes': 'marcos-moraes.webp',
     'Mario Fagundes': 'mario-fagundes.webp',
-    'Sérgio Avillez': 'sérgio-avillez.webp',
+    'Sérgio Avillez': 'sergio-avillez.webp',
     'Vanjo Souza': 'vanjo-souza.webp',
   };
   if (authorsName.containsKey(author)) {

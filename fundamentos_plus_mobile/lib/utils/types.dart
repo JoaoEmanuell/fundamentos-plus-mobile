@@ -22,16 +22,18 @@ class LessonType {
 class FullLessonType {
   late String author;
   late String title;
-  late List<String> description;
+  late List<dynamic> description;
   late String video;
   late String lessonTranscription;
+  late List<dynamic> pages;
 
   FullLessonType(
       {required this.author,
       required this.title,
       required this.description,
       required this.video,
-      required this.lessonTranscription});
+      required this.lessonTranscription,
+      required this.pages});
 
   factory FullLessonType.fromJson(Map<String, dynamic> json) {
     return FullLessonType(
@@ -39,7 +41,8 @@ class FullLessonType {
         title: json['title'] as String,
         video: json['video'] as String,
         lessonTranscription: json['lesson-transcription'] as String,
-        description: json["description"] as List<String>);
+        description: json["description"] as List<dynamic>,
+        pages: json["pages"] as List<dynamic>);
   }
 }
 
@@ -73,5 +76,24 @@ class CyclesType {
       formattedCycles[key] = CycleType.fromJson(json[key]);
     }
     return CyclesType(cycles: formattedCycles);
+  }
+}
+
+class LessonSearchResult {
+  late int id;
+  late String title;
+  late String description;
+
+  LessonSearchResult(
+      {required this.id, required this.title, required this.description});
+
+  factory LessonSearchResult.fromJson(Map<String, dynamic> json, int id) {
+    String description =
+        json["description"][0].toString(); // get only first description line
+    if (description.length > 50) {
+      description = description.substring(0, 50); // first 50 characters
+    }
+    return LessonSearchResult(
+        id: id, title: json["title"] as String, description: description);
   }
 }
