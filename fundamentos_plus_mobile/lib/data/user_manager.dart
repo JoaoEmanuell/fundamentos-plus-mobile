@@ -18,12 +18,12 @@ class UserManager {
     if (!_dataFile.existsSync()) {
       _dataFile.createSync();
     } else {
-      Map<String, dynamic> data = jsonDecode(_dataFile.readAsStringSync());
-      _actualLesson = ActualLesson.fromJson(data["_actualLesson"]);
+      final data = jsonDecode(_dataFile.readAsStringSync());
+      _actualLesson = ActualLesson.fromJson(jsonDecode(data["actualLesson"]));
       _lessons = {};
       for (var key in data["lessons"].keys) {
         _lessons[int.parse(key)] =
-            LessonProgress.fromJson(data["lessons"][key]);
+            LessonProgress.fromJson(jsonDecode(data["lessons"][key]));
       }
     }
   }
@@ -67,8 +67,8 @@ class UserManager {
   }
 
   void clearUserData() {
-    _actualLesson = ActualLesson(id: -1, title: "");
     _lessons = {};
-    save();
+    _actualLesson = ActualLesson(id: -1, title: "");
+    _dataFile.deleteSync();
   }
 }

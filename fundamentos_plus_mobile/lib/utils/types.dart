@@ -122,7 +122,7 @@ class LessonProgress {
   }
 
   String toJsonString() {
-    return '{"id": $id, "progress": $progress, "completed": $completed, "completedDate": "$completedDate", "actualPage": $actualPage}';
+    return '{"id": $id, "progress": $progress, "completed": $completed, "completedDate": "${completedDate.toString()}", "actualPage": ${actualPage.toString()}}';
   }
 }
 
@@ -132,7 +132,7 @@ class ActualLesson {
 
   ActualLesson({required this.id, required this.title});
 
-  factory ActualLesson.fromJson(Map<String, dynamic> json) {
+  factory ActualLesson.fromJson(dynamic json) {
     return ActualLesson(id: json["id"] as int, title: json["title"] as String);
   }
 
