@@ -4,8 +4,8 @@ import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/lesson_v
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/transcript_button.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
-import 'package:fundamentos_plus_mobile/utils/types.dart';
 
 class LessonPageArguments {
   late int id;
@@ -24,20 +24,8 @@ class _LessonPageState extends State<LessonPage> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as LessonPageArguments;
-    final lessonData = {
-      "title": "O conselho de Deus",
-      "author": "Edmar Ferreira",
-      "description": [
-        "Fundamentos é um programa de ensino formado pelo conselho apostólico da igreja, sob responsabilidade dos pastores Marcos Moraes, Vanjo Souza, Edmar Ferreira, João Bium, Manoel Rocha e Mário Fagundes.",
-        "O programa conta com várias plataformas e mídias para divulgar o ensino básico da Palavra de Deus de maneira uniforme a toda a igreja.",
-        "Para cada lição, há vídeos, áudios e textos escritos correspondentes. Todos indexados pelo mesmo número.",
-        "O Fundamentos possui um site: www.fundamentos.me. Nele estarão disponíveis todas as lições e mídias produzidas e disponibilizadas.",
-        "Dúvidas e solicitações podem ser feitas pelo e-mail contato@fundamentos.me."
-      ],
-      "video": "https://www.youtube.com/embed/Z6ksxWXT8-I?si=h0etylaOnGyCAj0Z",
-      "lesson-transcription": "o-conselho-de-deus_compressed.pdf"
-    };
-    final lesson = FullLessonType.fromJson(lessonData);
+    final lesson =
+        DataController.dataManagerInstance.getLessonsFromCycle(args.id);
     List<SizedBox> descriptionWidgets = [];
     for (final line in lesson.description) {
       descriptionWidgets.add(multilineText(

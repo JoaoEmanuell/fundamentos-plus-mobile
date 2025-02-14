@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 import 'package:fundamentos_plus_mobile/screens/cycles.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
@@ -34,25 +35,29 @@ class MyApp extends StatelessWidget {
     return AnimatedBuilder(
         animation: DarkModeController.instance,
         builder: (context, child) {
-          return MaterialApp(
-            title: 'Fundamentos plus',
-            theme: ThemeData(
-                useMaterial3: true,
-                primarySwatch: Colors.green,
-                colorScheme: DarkModeController.instance.getColorScheme(),
-                brightness: DarkModeController.instance.isDartTheme
-                    ? Brightness.dark
-                    : Brightness.light),
-            routes: {
-              "/": (context) => HomePage(),
-              "/cycles": (context) => CyclesPage(),
-              "/search": (context) => SearchPage(),
-              "/settings": (context) => SettingsPage(),
-              "/cycle": (context) => CyclePage(),
-              "/lesson": (context) => LessonPage(),
+          return AnimatedBuilder(
+            animation: DataController.instance,
+            builder: (context, child) {
+              return MaterialApp(
+                title: 'Fundamentos plus',
+                theme: ThemeData(
+                    useMaterial3: true,
+                    primarySwatch: Colors.green,
+                    colorScheme: DarkModeController.instance.getColorScheme(),
+                    brightness: DarkModeController.instance.isDartTheme
+                        ? Brightness.dark
+                        : Brightness.light),
+                routes: {
+                  "/": (context) => HomePage(),
+                  "/cycles": (context) => CyclesPage(),
+                  "/search": (context) => SearchPage(),
+                  "/settings": (context) => SettingsPage(),
+                  "/cycle": (context) => CyclePage(),
+                  "/lesson": (context) => LessonPage(),
+                },
+                initialRoute: "/",
+              );
             },
-            // initialRoute: "/",
-            initialRoute: "/",
           );
         });
   }

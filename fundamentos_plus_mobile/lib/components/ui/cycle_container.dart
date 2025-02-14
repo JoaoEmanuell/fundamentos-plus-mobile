@@ -4,11 +4,14 @@ import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 
-Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
+Widget cycleContainer(
+    BuildContext context, int id, String title, int lessons, bool activated) {
   return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/cycle",
-            arguments: CyclePageArguments(id));
+        if (activated) {
+          Navigator.pushNamed(context, "/cycle",
+              arguments: CyclePageArguments(id));
+        }
       },
       child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -22,7 +25,7 @@ Widget cycleContainer(BuildContext context, int id, String title, int lessons) {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
-                    child: circleId(id),
+                    child: circleId(id, activated: activated),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

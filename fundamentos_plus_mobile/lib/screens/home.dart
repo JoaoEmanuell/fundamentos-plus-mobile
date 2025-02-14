@@ -4,6 +4,7 @@ import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.d
 import 'package:fundamentos_plus_mobile/components/ui/home/actual_lesson_widget.dart';
 import 'package:fundamentos_plus_mobile/components/ui/home/cycles_carrousel.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson_preview.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,57 +25,8 @@ class _HomePageState extends State<HomePage> {
     };
     LessonType lastLesson = LessonType.fromJson(lastLessonJson);
 
-    final actualLessonJson = {
-      "id": 4,
-      "title": "O nascimento da igreja",
-      "author": "Marcos Moraes",
-      "unlocked": true
-    };
-    LessonType actualLesson = LessonType.fromJson(actualLessonJson);
-
-    final cyclesJson = {
-      "cycles": {
-        "1": {
-          "unlocked": true,
-          "title": "Temas Panorâmicos",
-          "lessons": [
-            {
-              "id": 1,
-              "title": "O conselho de Deus",
-              "author": "Edmar Ferreira",
-              "unlocked": true
-            }
-          ]
-        },
-        "2": {
-          "unlocked": true,
-          "title": "Jesus, sua vida e sua obra",
-          "lessons": [
-            {
-              "id": 6,
-              "title": "Jesus é Deus",
-              "author": "Vanjo Souza",
-              "unlocked": true
-            }
-          ]
-        },
-        "3": {
-          "unlocked": true,
-          "title": "A Volta de Jesus",
-          "lessons": [
-            {
-              "id": 23,
-              "title": "Por que e como estudar sobre a volta de Jesus?",
-              "author": "Gilberto Bajo",
-              "unlocked": true
-            }
-          ]
-        }
-      }
-    };
-
-    CyclesType cycles =
-        CyclesType.fromJson(cyclesJson["cycles"] as Map<String, dynamic>);
+    ActualLesson actualLesson =
+        DataController.userManagerInstance.getActualLesson();
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -105,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                   )
                 ])),
                 lessonPreview(context, lastLesson),
-                actualLessonWidget(actualLesson, context),
+                (actualLesson.id != -1
+                    ? actualLessonWidget(actualLesson, context)
+                    : Container()), // only render if actual lesson exists
                 Text(
                   "Ciclos",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -114,7 +68,8 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   width: 500,
                   height: 75,
-                  child: cyclesCarrousel(cycles, context),
+                  child: cyclesCarrousel(
+                      DataController.dataManagerInstance.getCycles(), context),
                 ),
               ],
             ),

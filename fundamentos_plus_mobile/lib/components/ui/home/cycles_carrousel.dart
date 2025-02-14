@@ -8,6 +8,7 @@ import 'package:fundamentos_plus_mobile/utils/types.dart';
 CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
   List<Center> cyclesWidget = [];
   for (final cycle in cycles.cycles.keys) {
+    CycleType cycleData = cycles.cycles[cycle]!;
     cyclesWidget.add(Center(
         child: ClipRRect(
       child: Container(
@@ -18,12 +19,16 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: circleId(int.parse(cycle),
-                  borderRadius: 5, fontSize: 16, width: 45, height: 45),
+                  borderRadius: 5,
+                  fontSize: 16,
+                  width: 45,
+                  height: 45,
+                  activated: cycleData.unlocked),
             ),
             multilineText(
                 230,
                 Text(
-                  cycles.cycles[cycle]!.title,
+                  cycleData.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ))
@@ -37,8 +42,10 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
       itemExtent: 300,
       onTap: (value) {
         // carousel children don't clickable, use the index for determinate which element has clicked by user.
-        Navigator.pushNamed(context, "/cycle",
-            arguments: CyclePageArguments(value + 1));
+        if (cycles.cycles[(value + 1).toString()]!.unlocked) {
+          Navigator.pushNamed(context, "/cycle",
+              arguments: CyclePageArguments(value + 1));
+        }
       },
       children: cyclesWidget);
 }

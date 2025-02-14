@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/preview/action_button.dart';
 import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
@@ -10,6 +12,9 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
     {double imageWidth = 300, double imageHeight = 200}) {
   Color playButtonColor =
       (lesson.unlocked ? DefaultColors.greenButton : Colors.grey);
+  LessonProgress lessonProgress =
+      DataController.userManagerInstance.getLessonProgress(lesson.id);
+
   return GestureDetector(
     onTap: () {
       if (lesson.unlocked) {
@@ -56,33 +61,30 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
                                   style: TextStyle(fontSize: 18),
                                 )),
                           ],
-                        )
-
-                        /*Text.rich(TextSpan(children: [
-                          WidgetSpan(
-                              child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 18,
-                              // width: 18,
-                            ),
-                          )),
-                          TextSpan(
-                              text: "Concluído em 09/02/2025",
-                              style: TextStyle(color: Colors.lightGreen))
-                        ]))*/ //used in future
+                        ),
+                        (lessonProgress
+                                .completed // show only if lesson is completed
+                            ? Text.rich(TextSpan(children: [
+                                WidgetSpan(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                    size: 18,
+                                    // width: 18,
+                                  ),
+                                )),
+                                TextSpan(
+                                    text:
+                                        "Concluído em ${lessonProgress.completedDate}",
+                                    style: TextStyle(color: Colors.lightGreen))
+                              ]))
+                            : Container())
                       ]),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: playButtonColor, width: 5),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Icon(Icons.play_arrow_outlined,
-                            size: 32, color: playButtonColor)),
+                    child: actionButton(lessonProgress, playButtonColor),
                   )
                 ],
               )

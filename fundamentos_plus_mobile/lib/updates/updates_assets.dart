@@ -3,8 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_archive/flutter_archive.dart';
+import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
+import 'package:fundamentos_plus_mobile/utils/get_assets_dir.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 
 class UpdatesAssets {
   Future<bool> _requestTheLastRelease() async {
@@ -16,7 +17,7 @@ class UpdatesAssets {
     dynamic assets = json["assets"]; // get the assets
     dynamic dataSize = assets[0]["size"]; // get the asset size
     // compare with saved data
-    final assetsDir = await _getAssetsDir();
+    final assetsDir = await getAssetsDir();
     File savedDataJson = File("${assetsDir.path}/data.json");
     if (!savedDataJson.existsSync()) return false;
     final savedDataDecode = jsonDecode(savedDataJson.readAsStringSync());
@@ -35,17 +36,8 @@ class UpdatesAssets {
     }
   }
 
-  Future<Directory> _getAssetsDir() async {
-    final assets = await getTemporaryDirectory();
-    final assetsDir = Directory("${assets.path}/assets");
-    if (!assetsDir.existsSync()) {
-      assetsDir.createSync();
-    }
-    return assetsDir;
-  }
-
   Future<bool> _firstStart() async {
-    final assetsDir = await _getAssetsDir();
+    final assetsDir = await getAssetsDir();
     File version = File("${assetsDir.path}/data.json");
     if (!version.existsSync()) {
       print("version not found");
@@ -55,7 +47,7 @@ class UpdatesAssets {
   }
 
   Future<bool> _extractDefaultDataZip() async {
-    final assetsDir = await _getAssetsDir();
+    final assetsDir = await getAssetsDir();
     // move the assets data zip to assets dir
     final dataZipBytes = await rootBundle.load("public/assets/data.zip");
     final dataZipBuffer = dataZipBytes.buffer;
@@ -89,6 +81,7 @@ class UpdatesAssets {
       if (firstStart) {
         await _extractDefaultDataZip();
       }
+      await DataController.instance.load();
       return await _requestTheLastRelease();
     } catch (e) {
       print(e);
