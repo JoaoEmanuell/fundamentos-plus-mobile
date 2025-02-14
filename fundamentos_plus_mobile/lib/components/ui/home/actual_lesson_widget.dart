@@ -4,7 +4,7 @@ import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 
-Stack actualLessonWidget(LessonType lesson, BuildContext context) {
+Stack actualLessonWidget(ActualLesson lesson, BuildContext context) {
   return Stack(
     children: [
       GestureDetector(

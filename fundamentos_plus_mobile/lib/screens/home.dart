@@ -25,13 +25,8 @@ class _HomePageState extends State<HomePage> {
     };
     LessonType lastLesson = LessonType.fromJson(lastLessonJson);
 
-    final actualLessonJson = {
-      "id": 4,
-      "title": "O nascimento da igreja",
-      "author": "Marcos Moraes",
-      "unlocked": true
-    };
-    LessonType actualLesson = LessonType.fromJson(actualLessonJson);
+    ActualLesson actualLesson =
+        DataController.userManagerInstance.getActualLesson();
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -62,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                   )
                 ])),
                 lessonPreview(context, lastLesson),
-                actualLessonWidget(actualLesson, context),
+                (actualLesson.id != -1
+                    ? actualLessonWidget(actualLesson, context)
+                    : Container()), // only render if actual lesson exists
                 Text(
                   "Ciclos",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

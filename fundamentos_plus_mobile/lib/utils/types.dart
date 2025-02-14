@@ -97,3 +97,46 @@ class LessonSearchResult {
         id: id, title: json["title"] as String, description: description);
   }
 }
+
+class LessonProgress {
+  late int id;
+  late double progress;
+  late bool completed;
+  late String? completedDate;
+  late int? actualPage;
+
+  LessonProgress(
+      {required this.id,
+      required this.progress,
+      required this.completed,
+      this.completedDate,
+      this.actualPage});
+
+  factory LessonProgress.fromJson(Map<String, dynamic> json) {
+    return LessonProgress(
+        id: json['id'] as int,
+        progress: json['progress'] as double,
+        completed: json['completed'] as bool,
+        completedDate: json['completedDate'] as String?,
+        actualPage: json['actualPage'] as int?);
+  }
+
+  String toJsonString() {
+    return '{"id": $id, "progress": $progress, "completed": $completed, "completedDate": "$completedDate", "actualPage": $actualPage}';
+  }
+}
+
+class ActualLesson {
+  late int id;
+  late String title;
+
+  ActualLesson({required this.id, required this.title});
+
+  factory ActualLesson.fromJson(Map<String, dynamic> json) {
+    return ActualLesson(id: json["id"] as int, title: json["title"] as String);
+  }
+
+  String toJsonString() {
+    return '{"id": $id, "title": "$title"}';
+  }
+}
