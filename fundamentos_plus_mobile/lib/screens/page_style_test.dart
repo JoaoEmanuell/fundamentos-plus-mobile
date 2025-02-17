@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/bold.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/green_separator.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/multi_bible.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/sub_green_title.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text.dart';
-import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
-import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/list_with_arrow.dart';
+import 'package:fundamentos_plus_mobile/utils/convert_hex_color_in_color.dart';
 
 class PageStyleTest extends StatefulWidget {
   const PageStyleTest({super.key});
@@ -19,19 +14,30 @@ class _PageStyleTestState extends State<PageStyleTest> {
   @override
   Widget build(BuildContext context) {
     String content =
-        'No temor do Senhor, tem o homem forte amparo, e isso é refúgio para os seus filhos. | Provérbios 14:26 , No temor do Senhor, tem o homem forte amparo, e isso é refúgio para os seus filhos. | Provérbios 14:26 , No temor do Senhor, tem o homem forte amparo, e isso é refúgio para os seus filhos. | Provérbios 14:26 , No temor do Senhor, tem o homem forte amparo, e isso é refúgio para os seus filhos. | Provérbios 14:26';
+        "right | #55730e | O primeiro erro: a casta sacerdotal que ainda existe nas denominações; | O segundo erro: os desigrejados ou aqueles que não reconhecem nenhum tipo de liderança sobre eles, por causa do “entendimento” errado de que todos são sacerdotes.";
 
-    String text = content.split(" | ")[0];
-    String versicle = content.split(" | ")[1];
+    final split = content.split(" | ");
+    final direction = split[0];
+    final hexColor = split[1];
+    final texts = split.sublist(2);
+    Color color = convertHexColorInColor(hexColor);
+    Icon arrowWidget = Icon(Icons.arrow_right_alt, color: color);
 
-    Column multiText = Column(
-      spacing: 16,
-      children: [
-        greenSeparatorStyle(""),
-        MarkdownBody(data: text),
-        boldStyle(versicle)
-      ],
-    );
+    switch (direction) {
+      case "up":
+        arrowWidget = Icon(Icons.arrow_upward, color: color);
+        break;
+      case "right": // default
+        arrowWidget = Icon(Icons.arrow_right_alt, color: color);
+        break;
+      case "down":
+        arrowWidget = Icon(Icons.arrow_downward, color: color);
+        break;
+      case "left":
+        arrowWidget = Icon(Icons.arrow_back, color: color);
+        break;
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
           child: Center(
@@ -44,8 +50,7 @@ class _PageStyleTestState extends State<PageStyleTest> {
               spacing: 16,
               children: <Widget>[
                 Center(
-                  child: subGreenTitleStyle(
-                      "Sub Green TitleSub Green TitleSub Green TitleSub Green TitleSub Green TitleSub Green TitleSub Green TitleSub Green TitleSub Green Title"),
+                  child: listWithArrowStyle(content),
                 )
               ],
             ),

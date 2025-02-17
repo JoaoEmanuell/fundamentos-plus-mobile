@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text.dart';
 
-Widget multiText(String content) {
+Widget multiTextStyle(String content) {
   List<Widget> markdown = [];
 
   for (final text in content.split(" | ")) {

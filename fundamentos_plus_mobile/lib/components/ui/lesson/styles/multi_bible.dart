@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/bible.dart';
 
-Widget multiBible(String content) {
+Widget multiBibleStyle(String content) {
   List<Widget> markdown = [];
 
   for (final text in content.split(" , ")) {

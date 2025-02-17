@@ -11,15 +11,15 @@
 - [ ] table-with-index
 - [x] text-italic
 - [ ] list-with-number-green-button-with-text
-- [ ] text-for-complement-reading
-- [ ] text-green
+- [x] text-for-complement-reading
+- [x] text-green
 - [ ] table-with-green-header
-- [ ] list-with-gray-background
-- [ ] check-list
+- [x] list-with-gray-background
+- [x] check-list
 - [ ] image
 - [ ] text-highlight
 - [ ] green-background-title
 - [ ] frame-with-title-and-border
-- [ ] list-with-arrow
+- [x] list-with-arrow
 - [x] multi-text
 - [x] multi-bible
