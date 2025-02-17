@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/list_with_arrow.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text_highlight.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_hex_color_in_color.dart';
 
 class PageStyleTest extends StatefulWidget {
@@ -14,28 +14,36 @@ class _PageStyleTestState extends State<PageStyleTest> {
   @override
   Widget build(BuildContext context) {
     String content =
-        "right | #55730e | O primeiro erro: a casta sacerdotal que ainda existe nas denominações; | O segundo erro: os desigrejados ou aqueles que não reconhecem nenhum tipo de liderança sobre eles, por causa do “entendimento” errado de que todos são sacerdotes.";
+        "**01 -** | #769335 | **01 -** Você já **observou** atentamente a relação entre o Espírito Santo e Jesus? **01 -**";
 
-    final split = content.split(" | ");
-    final direction = split[0];
-    final hexColor = split[1];
-    final texts = split.sublist(2);
-    Color color = convertHexColorInColor(hexColor);
-    Icon arrowWidget = Icon(Icons.arrow_right_alt, color: color);
+    final split = content.split(' | ');
+    final expressionToHighlight = split[0];
+    final color = convertHexColorInColor(split[1]);
+    final texts = split[2].split(expressionToHighlight);
 
-    switch (direction) {
-      case "up":
-        arrowWidget = Icon(Icons.arrow_upward, color: color);
-        break;
-      case "right": // default
-        arrowWidget = Icon(Icons.arrow_right_alt, color: color);
-        break;
-      case "down":
-        arrowWidget = Icon(Icons.arrow_downward, color: color);
-        break;
-      case "left":
-        arrowWidget = Icon(Icons.arrow_back, color: color);
-        break;
+    List<WidgetSpan> _buildHighlightedText(
+        List<String> texts, String highlight, Color color) {
+      List<WidgetSpan> spans = [];
+
+      for (final text in texts) {
+        if (text.isNotEmpty) {
+          spans.add(WidgetSpan(
+              child: MarkdownBody(
+            data: text,
+          )));
+        } else {
+          spans.add(WidgetSpan(
+            child: MarkdownBody(
+              data: highlight,
+              styleSheet: MarkdownStyleSheet(
+                p: TextStyle(color: color),
+              ),
+            ),
+          ));
+        }
+      }
+
+      return spans;
     }
 
     return Scaffold(
@@ -50,7 +58,7 @@ class _PageStyleTestState extends State<PageStyleTest> {
               spacing: 16,
               children: <Widget>[
                 Center(
-                  child: listWithArrowStyle(content),
+                  child: textHighlightStyle(content),
                 )
               ],
             ),

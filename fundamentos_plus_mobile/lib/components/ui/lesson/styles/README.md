@@ -10,16 +10,16 @@
 - [x] green-sub-title
 - [ ] table-with-index
 - [x] text-italic
-- [ ] list-with-number-green-button-with-text
+- [x] list-with-number-green-button-with-text
 - [x] text-for-complement-reading
 - [x] text-green
 - [ ] table-with-green-header
 - [x] list-with-gray-background
 - [x] check-list
 - [ ] image
-- [ ] text-highlight
-- [ ] green-background-title
-- [ ] frame-with-title-and-border
+- [x] text-highlight
+- [x] green-background-title
+- [x] frame-with-title-and-border
 - [x] list-with-arrow
 - [x] multi-text
 - [x] multi-bible
