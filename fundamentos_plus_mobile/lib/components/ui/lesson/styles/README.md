@@ -8,15 +8,15 @@
 - [x] bible-text
 - [x] green-separator
 - [x] green-sub-title
-- [ ] table-with-index
+- [x] table-with-index
 - [x] text-italic
 - [x] list-with-number-green-button-with-text
 - [x] text-for-complement-reading
 - [x] text-green
-- [ ] table-with-green-header
+- [x] table-with-green-header
 - [x] list-with-gray-background
 - [x] check-list
-- [ ] image
+- [x] image
 - [x] text-highlight
 - [x] green-background-title
 - [x] frame-with-title-and-border
