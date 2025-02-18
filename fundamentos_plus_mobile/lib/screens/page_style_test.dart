@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text_highlight.dart';
-import 'package:fundamentos_plus_mobile/utils/convert_hex_color_in_color.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text/multi_bible.dart';
 
 class PageStyleTest extends StatefulWidget {
   const PageStyleTest({super.key});
@@ -13,38 +11,9 @@ class PageStyleTest extends StatefulWidget {
 class _PageStyleTestState extends State<PageStyleTest> {
   @override
   Widget build(BuildContext context) {
-    String content =
-        "**01 -** | #769335 | **01 -** Você já **observou** atentamente a relação entre o Espírito Santo e Jesus? **01 -**";
-
-    final split = content.split(' | ');
-    final expressionToHighlight = split[0];
-    final color = convertHexColorInColor(split[1]);
-    final texts = split[2].split(expressionToHighlight);
-
-    List<WidgetSpan> _buildHighlightedText(
-        List<String> texts, String highlight, Color color) {
-      List<WidgetSpan> spans = [];
-
-      for (final text in texts) {
-        if (text.isNotEmpty) {
-          spans.add(WidgetSpan(
-              child: MarkdownBody(
-            data: text,
-          )));
-        } else {
-          spans.add(WidgetSpan(
-            child: MarkdownBody(
-              data: highlight,
-              styleSheet: MarkdownStyleSheet(
-                p: TextStyle(color: color),
-              ),
-            ),
-          ));
-        }
-      }
-
-      return spans;
-    }
+    List<String> contents = [
+      "Eles, pois, o venceram por causa do sangue do Cordeiro e por causa da palavra do testemunho que deram e, mesmo em face da morte, n\u00e3o amaram a pr\u00f3pria vida. | Apocalipse 12:11 ,  \u201cVi tamb\u00e9m tronos, e nestes sentaram-se aqueles aos quais foi dada autoridade de julgar. Vi ainda as almas dos decapitados por causa do testemunho de Jesus, bem como por causa da palavra de Deus, tantos quantos n\u00e3o adoraram a besta, nem tampouco a sua imagem, e n\u00e3o receberam a marca na fronte e na m\u00e3o; e viveram e reinaram com Cristo durante mil anos.. | Apocalipse 20:4",
+    ];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -58,7 +27,12 @@ class _PageStyleTestState extends State<PageStyleTest> {
               spacing: 16,
               children: <Widget>[
                 Center(
-                  child: textHighlightStyle(content),
+                  child: Column(
+                    spacing: 16,
+                    children: contents
+                        .map((content) => multiBibleStyle(content))
+                        .toList(),
+                  ),
                 )
               ],
             ),

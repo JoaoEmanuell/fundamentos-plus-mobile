@@ -30,6 +30,7 @@ Widget tableWithIndexStyle(String content) {
               .map((cell) => cell.contains("index:")
                   ? TableCell(
                       // index cell
+                      verticalAlignment: TableCellVerticalAlignment.middle,
                       child: Container(
                           height: maxColumnHeight,
                           decoration:
@@ -49,6 +50,7 @@ Widget tableWithIndexStyle(String content) {
                     )
                   : TableCell(
                       // normal cell
+                      verticalAlignment: TableCellVerticalAlignment.middle,
                       child: Container(
                           height: maxColumnHeight,
                           decoration:

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/bible.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text/bible.dart';
 
 Widget multiBibleStyle(String content) {
   List<Widget> markdown = [];

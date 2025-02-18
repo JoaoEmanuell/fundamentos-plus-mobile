@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text.dart';
+import 'package:fundamentos_plus_mobile/components/ui/lesson/styles/text/text.dart';
 
 Widget multiTextStyle(String content) {
   List<Widget> markdown = [];

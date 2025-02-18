@@ -55,9 +55,9 @@ class MyApp extends StatelessWidget {
                   "/settings": (context) => SettingsPage(),
                   "/cycle": (context) => CyclePage(),
                   "/lesson": (context) => LessonPage(),
-                  "/style_test": (context) => PageStyleTest(),
+                  //"/style_test": (context) => PageStyleTest(),
                 },
-                initialRoute: "/style_test", //"/",
+                initialRoute: "/",
               );
             },
           );

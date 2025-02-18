@@ -9,7 +9,7 @@ ClipRRect circleId(dynamic id,
     double borderRadius = 50.0,
     bool activated = true}) {
   if (isInt(id)) {
-    fontSize = (id < 100 ? fontSize : fontSize / 1.3);
+    fontSize = (int.parse(id) < 100 ? fontSize : fontSize / 1.3);
   }
   return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
@@ -18,7 +18,7 @@ ClipRRect circleId(dynamic id,
         width: width,
         height: height,
         child: Center(
-          child: Text(id.toString(),
+          child: Text(id.toString().trim(),
               style: TextStyle(
                   fontSize: fontSize,
                   color: Colors.white,

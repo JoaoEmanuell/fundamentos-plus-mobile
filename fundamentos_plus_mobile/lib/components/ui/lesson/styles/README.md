@@ -2,24 +2,26 @@
 
 **Styles**
 
-- [x] green-title
-- [x] text
-- [x] text-bold
-- [x] bible-text
-- [x] green-separator
-- [x] green-sub-title
-- [x] table-with-index
-- [x] text-italic
-- [x] list-with-number-green-button-with-text
-- [x] text-for-complement-reading
-- [x] text-green
-- [x] table-with-green-header
-- [x] list-with-gray-background
-- [x] check-list
-- [x] image
-- [x] text-highlight
-- [x] green-background-title
-- [x] frame-with-title-and-border
-- [x] list-with-arrow
-- [x] multi-text
-- [x] multi-bible
+- [x] green-title*
+- [x] text*
+- [x] text-bold*
+- [x] bible-text*
+- [x] green-separator*
+- [x] green-sub-title*
+- [x] table-with-index*
+- [x] text-italic*
+- [x] list-with-number-green-button-with-text*
+- [x] text-for-complement-reading*
+- [x] text-green*
+- [x] table-with-green-header*
+- [x] list-with-gray-background*
+- [x] check-list*
+- [x] image*
+- [x] text-highlight*
+- [x] green-background-title*
+- [x] frame-with-title-and-border*
+- [x] list-with-arrow*
+- [x] multi-text*
+- [x] multi-bible*
+
+**Tested in 18/02/2025**

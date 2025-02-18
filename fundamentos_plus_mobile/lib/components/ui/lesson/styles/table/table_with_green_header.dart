@@ -3,7 +3,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
 Widget tableWithGreenHeaderStyle(String content) {
-  print(content);
   // get the content elements
   List<String> headers = content.split(" | ");
   List<String> fullHeaders = [];
@@ -16,9 +15,6 @@ Widget tableWithGreenHeaderStyle(String content) {
       fullLines.add(headerSplit);
     }
   }
-
-  print(fullHeaders);
-  print(fullLines);
 
   // get the rows
 
@@ -43,7 +39,11 @@ Widget tableWithGreenHeaderStyle(String content) {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: MarkdownBody(
-            data: cell,
+            data: cell
+                .replaceAll("<void>", "")
+                .replaceAll("<void> |", "")
+                .replaceAll("<void> | ", "")
+                .replaceAll("|", ""), // remove the void
             styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.center),
           ),
         ),
