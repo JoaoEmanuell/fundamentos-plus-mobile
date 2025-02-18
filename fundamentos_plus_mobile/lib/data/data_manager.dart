@@ -79,6 +79,10 @@ class DataManager {
     throw Exception("Lesson not found!");
   }
 
+  Directory getAssets() {
+    return _assets;
+  }
+
   Stream<LessonSearchResult> search(String query) async* {
     Directory lessonsDir = Directory("${_assets.path}/data/lessons/");
     query = clearQueryStrings(query).trim();
