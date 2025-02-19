@@ -44,7 +44,10 @@ Widget tableWithGreenHeaderStyle(String content) {
                 .replaceAll("<void> |", "")
                 .replaceAll("<void> | ", "")
                 .replaceAll("|", ""), // remove the void
-            styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.center),
+            styleSheet: MarkdownStyleSheet(
+              textAlign: WrapAlignment.center,
+              p: TextStyle(color: Colors.black),
+            ),
           ),
         ),
       ));
