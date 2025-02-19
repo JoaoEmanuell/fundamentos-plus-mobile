@@ -16,7 +16,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   bool _visibleTextSearchHint = true;
   bool _visibleUpButton = false;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   late Widget statusButton;
   late Text statusText;
   final fieldText = TextEditingController();
@@ -150,7 +150,10 @@ class _SearchPageState extends State<SearchPage> {
                         spacing: 16,
                         children: [statusText, statusButton],
                       ))),
-                  ..._searchLessonPreviews
+                  Column(
+                    spacing: 16,
+                    children: _searchLessonPreviews,
+                  )
                 ],
               ),
             ),

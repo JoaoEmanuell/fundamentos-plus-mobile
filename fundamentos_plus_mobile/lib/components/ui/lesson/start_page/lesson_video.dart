@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/components/ui/utils/show_custom_dialog.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
@@ -30,21 +29,20 @@ GestureDetector lessonVideo(FullLessonType lesson, BuildContext context) {
                   convertAuthorNameInAssetName(lesson.author, "cycles_thumbs"),
                   width: 150,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Vídeo da lição",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      multilineText(
-                          150,
-                          Text("Vídeo com o resumo da lição",
-                              style:
-                                  TextStyle(color: Colors.blueGrey.shade400)))
-                    ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Vídeo da lição",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text("Vídeo com o resumo da lição",
+                            style: TextStyle(color: Colors.blueGrey.shade400))
+                      ],
+                    ),
                   ),
                 )
               ],

@@ -27,22 +27,21 @@ Widget cycleContainer(
                     padding: const EdgeInsets.only(right: 16),
                     child: circleId(id, activated: activated),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      multilineText(
-                        220,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Text(
                           title,
                           style: TextStyle(fontSize: 16),
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      Text("$lessons lições",
-                          style: TextStyle(
-                              fontSize: 16, color: DefaultColors.greenButton))
-                    ],
+                        Text("$lessons lições",
+                            style: TextStyle(
+                                fontSize: 16, color: DefaultColors.greenButton))
+                      ],
+                    ),
                   )
                 ],
               ),

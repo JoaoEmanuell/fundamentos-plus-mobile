@@ -66,18 +66,20 @@ GestureDetector transcriptButton(
                         size: 84,
                       ),
                     )),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ensino Transcrito",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text("Transcrição do ensino",
-                          style: TextStyle(color: Colors.blueGrey.shade400))
-                    ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Ensino Transcrito",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text("Transcrição do ensino",
+                            style: TextStyle(color: Colors.blueGrey.shade400))
+                      ],
+                    ),
                   ),
                 )
               ],
