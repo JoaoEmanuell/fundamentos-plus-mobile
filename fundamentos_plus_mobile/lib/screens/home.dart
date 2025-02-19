@@ -17,13 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final lastLessonJson = {
-      "id": 1,
-      "title": "O conselho de Deus",
-      "author": "Edmar Ferreira",
-      "unlocked": true
-    };
-    LessonType lastLesson = LessonType.fromJson(lastLessonJson);
+    LessonType lastLesson = DataController.dataManagerInstance.getLastLesson();
 
     ActualLesson actualLesson =
         DataController.userManagerInstance.getActualLesson();

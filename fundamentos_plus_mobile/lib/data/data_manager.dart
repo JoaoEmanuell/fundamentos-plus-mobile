@@ -70,7 +70,7 @@ class DataManager {
     throw Exception("Cycle not found!");
   }
 
-  FullLessonType getLessonsFromCycle(int id) {
+  FullLessonType getLessonFromCycle(int id) {
     File lessonFile = File("${_assets.path}/data/lessons/$id.min.json");
     if (lessonFile.existsSync()) {
       return FullLessonType.fromJson(
@@ -111,6 +111,25 @@ class DataManager {
       }
     }
     return;
-    //return _deepSearch(query, lessonsDir);
+  }
+
+  LessonType getLastLesson() {
+    Iterable<String> keys = _cyclesType.cycles.keys;
+    for (int i = keys.length; i > 0; i--) {
+      CycleType cycle = getCycle(i);
+      if (cycle.unlocked) {
+        Iterable<LessonType> lessons = cycle.lessons.reversed;
+        for (LessonType lesson in lessons) {
+          if (lesson.unlocked) {
+            return lesson;
+          }
+        }
+      }
+    }
+    return LessonType(
+        author: "Edmar Ferreira",
+        id: 1,
+        title: "O conselho de Deus",
+        unlocked: true);
   }
 }

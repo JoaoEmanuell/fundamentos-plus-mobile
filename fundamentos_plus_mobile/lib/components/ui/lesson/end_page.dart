@@ -28,5 +28,4 @@ Widget endPage(FullLessonType lesson, LessonPageArguments args) {
       ],
     ),
   );
-  ;
 }

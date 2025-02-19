@@ -98,7 +98,7 @@ class _LessonPageState extends State<LessonPage> {
   @override
   Widget build(BuildContext context) {
     _args = ModalRoute.of(context)!.settings.arguments as LessonPageArguments;
-    _lesson = DataController.dataManagerInstance.getLessonsFromCycle(_args.id);
+    _lesson = DataController.dataManagerInstance.getLessonFromCycle(_args.id);
     if (_currentPageIndex == -1) {
       loadInitialPage();
     } else if (_currentPageIndex < _lesson.pages.length) {
