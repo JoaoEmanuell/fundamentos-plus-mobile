@@ -27,6 +27,7 @@ class _LessonPageState extends State<LessonPage> {
   late Widget _actionButton;
   late LessonPageArguments _args;
   bool _firstLessonLoad = true;
+  final ScrollController _scrollController = ScrollController();
 
   void nextPage() {
     setState(() {
@@ -89,6 +90,11 @@ class _LessonPageState extends State<LessonPage> {
         completed: false));
   }
 
+  void toTop() {
+    _scrollController.animateTo(0,
+        duration: Duration(seconds: 1000), curve: Curves.linear);
+  }
+
   @override
   Widget build(BuildContext context) {
     _args = ModalRoute.of(context)!.settings.arguments as LessonPageArguments;
@@ -96,17 +102,22 @@ class _LessonPageState extends State<LessonPage> {
     if (_currentPageIndex == -1) {
       loadInitialPage();
     } else if (_currentPageIndex < _lesson.pages.length) {
-      _actionButton = nextAndPreviewButton(nextPage, previousPage);
+      _actionButton =
+          nextAndPreviewButton(nextPage, previousPage, _scrollController);
     }
 
     return Scaffold(
       body: SingleChildScrollView(
+          controller: _scrollController,
           child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: _currentPage,
-        ),
-      )),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: _currentPage,
+              ),
+            ),
+          )),
       appBar: AppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(

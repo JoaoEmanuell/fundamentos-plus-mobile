@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fundamentos_plus_mobile/components/ui/utils/up_button_widget.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 
-Row nextAndPreviewButton(VoidCallback next, VoidCallback preview) {
+Row nextAndPreviewButton(VoidCallback next, VoidCallback preview,
+    ScrollController scrollController) {
   WidgetStateProperty<Color> color =
       WidgetStateProperty.resolveWith((state) => DefaultColors.greenButton);
   return Row(
@@ -15,6 +17,7 @@ Row nextAndPreviewButton(VoidCallback next, VoidCallback preview) {
           style: TextStyle(color: Colors.white),
         ),
       ),
+      upButtonWidget(true, scrollController, durationAnimation: 1),
       ElevatedButton(
         onPressed: next,
         style: ButtonStyle(backgroundColor: color),

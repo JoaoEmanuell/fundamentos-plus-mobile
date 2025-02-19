@@ -14,7 +14,6 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
       (lesson.unlocked ? DefaultColors.greenButton : Colors.grey);
   LessonProgress lessonProgress =
       DataController.userManagerInstance.getLessonProgress(lesson.id);
-  //DateFormat dateFormat = DateFormat("dd-MM-yyyy", "pt_br");
 
   return GestureDetector(
     onTap: () {
@@ -42,10 +41,12 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 8,
                         children: [
                           Row(
                             children: [
