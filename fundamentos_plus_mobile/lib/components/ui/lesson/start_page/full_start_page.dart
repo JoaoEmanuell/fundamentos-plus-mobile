@@ -3,7 +3,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/lesson_video.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/transcript_button.dart';
-import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';

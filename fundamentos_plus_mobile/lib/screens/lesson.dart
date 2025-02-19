@@ -26,6 +26,7 @@ class _LessonPageState extends State<LessonPage> {
   late FullLessonType _lesson;
   late Widget _actionButton;
   late LessonPageArguments _args;
+  bool _firstLessonLoad = true;
 
   void nextPage() {
     setState(() {
@@ -45,7 +46,7 @@ class _LessonPageState extends State<LessonPage> {
   void previousPage() {
     setState(() {
       _currentPageIndex--;
-      if (_currentPageIndex > 0) {
+      if (_currentPageIndex >= 0) {
         _currentPage = constructPage(_lesson.pages[_currentPageIndex]);
         setLessonProgress();
       }
@@ -58,6 +59,16 @@ class _LessonPageState extends State<LessonPage> {
       _currentPage = fullStartPage(context, _args, _lesson);
       _actionButton = startFloatingButton(nextPage);
     });
+    dynamic actualPageProgress = DataController.userManagerInstance
+        .getLessonProgress(_args.id)
+        .actualPage;
+    if (actualPageProgress != null && _firstLessonLoad) {
+      setState(() {
+        _currentPageIndex = actualPageProgress - 1;
+        _firstLessonLoad = false;
+      });
+    }
+
     if (end) {
       DataController.userManagerInstance
           .setActualLesson(ActualLesson(id: _args.id, title: _lesson.title));
