@@ -6,7 +6,6 @@ import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 import 'package:fundamentos_plus_mobile/screens/cycles.dart';
 import 'package:fundamentos_plus_mobile/screens/home.dart';
 import 'package:fundamentos_plus_mobile/screens/lesson.dart';
-import 'package:fundamentos_plus_mobile/screens/page_style_test.dart';
 import 'package:fundamentos_plus_mobile/screens/search.dart';
 import 'package:fundamentos_plus_mobile/screens/settings.dart';
 import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';

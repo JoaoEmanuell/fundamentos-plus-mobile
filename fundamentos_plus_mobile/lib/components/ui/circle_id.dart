@@ -10,6 +10,8 @@ ClipRRect circleId(dynamic id,
     bool activated = true}) {
   if (id.runtimeType != int && isInt(id)) {
     fontSize = (int.parse(id) < 100 ? fontSize : fontSize / 1.3);
+  } else if (id.runtimeType == int) {
+    fontSize = (id < 100 ? fontSize : fontSize / 1.3);
   }
   return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),

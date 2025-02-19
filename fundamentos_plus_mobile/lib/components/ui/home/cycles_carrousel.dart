@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/circle_id.dart';
-import 'package:fundamentos_plus_mobile/components/ui/multiline_text.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/screens/cycle.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
@@ -10,29 +9,31 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
   for (final cycle in cycles.cycles.keys) {
     CycleType cycleData = cycles.cycles[cycle]!;
     cyclesWidget.add(Center(
-        child: ClipRRect(
-      child: Container(
-        decoration: BoxDecoration(
-            color: DarkModeController.instance.getColorScheme().secondary),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: circleId(int.parse(cycle),
-                  borderRadius: 5,
-                  fontSize: 16,
-                  width: 45,
-                  height: 45,
-                  activated: cycleData.unlocked),
-            ),
-            multilineText(
-                230,
-                Text(
+        child: Expanded(
+      child: ClipRRect(
+        child: Container(
+          decoration: BoxDecoration(
+              color: DarkModeController.instance.getColorScheme().secondary),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: circleId(int.parse(cycle),
+                    borderRadius: 5,
+                    fontSize: 16,
+                    width: 45,
+                    height: 45,
+                    activated: cycleData.unlocked),
+              ),
+              Expanded(
+                child: Text(
                   cycleData.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                ))
-          ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     )));

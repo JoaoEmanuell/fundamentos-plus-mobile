@@ -14,6 +14,7 @@ Widget listWithGrayBackgroundStyle(String content) {
                 child: MarkdownBody(
                   data: text,
                   styleSheet: MarkdownStyleSheet(
+                    p: TextStyle(color: Colors.black),
                     textAlign: WrapAlignment.center,
                   ),
                 ),

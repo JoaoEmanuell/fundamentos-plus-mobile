@@ -62,6 +62,7 @@ Widget tableWithIndexStyle(String content) {
                                 child: MarkdownBody(
                                   data: cell,
                                   styleSheet: MarkdownStyleSheet(
+                                      p: TextStyle(color: Colors.black),
                                       textAlign: WrapAlignment.center),
                                 ),
                               ),

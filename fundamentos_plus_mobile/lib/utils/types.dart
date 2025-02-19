@@ -89,10 +89,8 @@ class LessonSearchResult {
 
   factory LessonSearchResult.fromJson(Map<String, dynamic> json, int id) {
     String description =
-        json["description"][0].toString(); // get only first description line
-    if (description.length > 50) {
-      description = description.substring(0, 50); // first 50 characters
-    }
+        json["description"].join("\n"); // get only first description line
+
     return LessonSearchResult(
         id: id, title: json["title"] as String, description: description);
   }
