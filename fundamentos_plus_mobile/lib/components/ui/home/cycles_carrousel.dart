@@ -9,14 +9,14 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
   for (final cycle in cycles.cycles.keys) {
     CycleType cycleData = cycles.cycles[cycle]!;
     cyclesWidget.add(Center(
-        child: Expanded(
-      child: ClipRRect(
-        child: Container(
-          decoration: BoxDecoration(
-              color: DarkModeController.instance.getColorScheme().secondary),
-          child: Row(
-            children: [
-              Padding(
+        child: ClipRRect(
+      child: Container(
+        decoration: BoxDecoration(
+            color: DarkModeController.instance.getColorScheme().secondary),
+        child: Row(
+          children: [
+            Flexible(
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: circleId(int.parse(cycle),
                     borderRadius: 5,
@@ -25,22 +25,23 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
                     height: 45,
                     activated: cycleData.unlocked),
               ),
-              Expanded(
-                child: Text(
-                  cycleData.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              )
-            ],
-          ),
+            ),
+            Expanded(
+              child: Text(
+                cycleData.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            )
+          ],
         ),
       ),
     )));
   }
-  return CarouselView(
+  return CarouselView.weighted(
       scrollDirection: Axis.horizontal,
-      itemExtent: 300,
+      flexWeights: [1],
+      //itemExtent: double.infinity,
       onTap: (value) {
         // carousel children don't clickable, use the index for determinate which element has clicked by user.
         if (cycles.cycles[(value + 1).toString()]!.unlocked) {
