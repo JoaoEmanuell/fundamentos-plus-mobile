@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
+import 'package:fundamentos_plus_mobile/utils/get_device_size.dart';
 import 'package:string_validator/string_validator.dart';
 
 ClipRRect circleId(dynamic id,
@@ -8,11 +11,8 @@ ClipRRect circleId(dynamic id,
     double fontSize = 28,
     double borderRadius = 50.0,
     bool activated = true}) {
-  if (id.runtimeType != int && isInt(id)) {
-    fontSize = (int.parse(id) < 100 ? fontSize : fontSize / 1.3);
-  } else if (id.runtimeType == int) {
-    fontSize = (id < 100 ? fontSize : fontSize / 1.3);
-  }
+  fontSize = _getFontSize(id, fontSize);
+
   return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
@@ -27,4 +27,13 @@ ClipRRect circleId(dynamic id,
                   fontWeight: FontWeight.bold)),
         ),
       ));
+}
+
+double _getFontSize(dynamic id, double fontSize) {
+  Size deviceSize = getDeviceSize();
+  if (deviceSize.width >= 1080) {
+    // for small ui's
+    return (int.parse(id.toString()) < 100 ? fontSize : fontSize / 1.8);
+  }
+  return (int.parse(id) < 100 ? fontSize : fontSize / 1.4);
 }
