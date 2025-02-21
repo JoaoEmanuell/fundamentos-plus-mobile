@@ -3,29 +3,22 @@ Fundamentals plus is an application based on the fundamentals application, this 
 
 # Testing
 
+Read the [test details](./docs/TESTS_DETAILS.md) for more information's.
+
 ## Android
 
-Version | Status | Type | Notes
-:--: | :--: | :--: | :--:
-**15** | ❌ *Not tested* 
-**14** | 🟨 *In testing* | **Physical** | Request permission to write files not working.
-**13** | ❌ *Not tested*
-**12** | ❌ *Not tested*
-**11** | ✅ **Completed** | **Physical** | Full Work
-**10** | ❌ *Not tested* 
-**09** | ❌ *Not tested* 
-**08** | ❌ *Not tested* 
-**07** | ❌ *Not tested* 
-**06** | ❌ *Not tested* 
-**05** | ❌ *Not tested* 
-**15** | ❌ *Not tested* 
-**14** | ❌ *Not tested* 
-**13** | ❌ *Not tested* 
-**12** | ❌ *Not tested* 
-**11** | ❌ *Not tested* 
-**10** | ❌ *Not tested* 
-**09** | ❌ *Not tested* 
-**08** | ❌ *Not tested* 
-**07** | ❌ *Not tested* 
-**06** | ❌ *Not tested* 
-**05** | ❌ *Not tested* 
+Version | Status           | Type         
+:--:    | :--:             | :--:         
+**15**  | ❌ *Not tested* 
+**14**  | 🟨 *In testing*  | **Physical**
+**13**  | 🟨 *In testing*  | **Emulator**
+**12**  | ✅ **Completed** | **Emulator**
+**11**  | ✅ **Completed** | **Physical**
+**10**  | ✅ **Completed** | **Emulator**
+**9.0** | ✅ **Completed** | **Emulator**
+**8.0** | ✅ **Completed** | **Emulator**
+**7.0** | ✅ **Completed** | **Emulator**
+**6.0** | 🟨 **Completed** | **Emulator**
+**5.1** | 🟨 *Completed*   | **Emulator**
+**5.0** | ✅ **Completed** | **Emulator**
+
