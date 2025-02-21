@@ -27,7 +27,7 @@ class _CyclesPageState extends State<CyclesPage> {
   Widget build(BuildContext context) {
     ScrollController scrollController = ScrollController();
     return Scaffold(
-        body: SingleChildScrollView(
+        body: SafeArea(child: SingleChildScrollView(
             controller: scrollController,
             child: Center(
               child: Padding(
@@ -49,7 +49,7 @@ class _CyclesPageState extends State<CyclesPage> {
                   ],
                 ),
               ),
-            )),
+            ))),
         floatingActionButton: upButtonWidget(true, scrollController),
         bottomNavigationBar: bottomAppBarComponent(context, current: 'cycles'));
   }

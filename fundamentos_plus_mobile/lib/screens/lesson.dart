@@ -107,7 +107,7 @@ class _LessonPageState extends State<LessonPage> {
     }
 
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(child: SingleChildScrollView(
           controller: _scrollController,
           child: Center(
             child: Padding(
@@ -117,7 +117,7 @@ class _LessonPageState extends State<LessonPage> {
                 child: _currentPage,
               ),
             ),
-          )),
+          ))),
       appBar: AppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(

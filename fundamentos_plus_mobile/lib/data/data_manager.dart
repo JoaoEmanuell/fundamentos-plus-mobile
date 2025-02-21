@@ -91,11 +91,13 @@ class DataManager {
     }
     if (isNumeric(query)) {
       // simple search
-      for (int i = 0; i != lessonsDir.listSync().length; i++) {
-        if (i.toString().contains(query)) {
-          File lessonFile = File("${lessonsDir.path}$i.min.json");
+      for (final file in lessonsDir.listSync()) {
+        String filename = file.path.split("/").last;
+        if (filename.contains(query)) {
+          File lessonFile = File(file.path);
           yield LessonSearchResult.fromJson(
-              jsonDecode(lessonFile.readAsStringSync()), i);
+              jsonDecode(lessonFile.readAsStringSync()),
+              int.parse(filename.replaceAll(".min.json", "")));
         }
       }
     } else {

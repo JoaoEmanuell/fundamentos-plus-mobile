@@ -7,6 +7,7 @@ import 'package:fundamentos_plus_mobile/screens/lesson.dart';
 import 'package:fundamentos_plus_mobile/utils/convert_author_name_in_asset_name.dart';
 import 'package:fundamentos_plus_mobile/utils/format_date.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
+import 'package:fundamentos_plus_mobile/utils/get_device_size.dart';
 
 GestureDetector lessonPreview(BuildContext context, LessonType lesson,
     {double imageWidth = 300, double imageHeight = 200}) {
@@ -35,8 +36,8 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Image.asset(
                   convertAuthorNameInAssetName(lesson.author, "cycles_thumbs"),
-                  width: imageWidth,
-                  height: imageHeight,
+                  width: getDeviceSize().width / 4,
+                  height: getDeviceSize().height / 6,
                 ),
               ),
               Row(
