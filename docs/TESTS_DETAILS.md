@@ -3,8 +3,8 @@
 Version | Status           | Type         | Notes
 :--:    | :--:             | :--:         | :--:
 **15**  | ❌ *Not tested* 
-**14**  | 🟨 *In testing*  | **Physical** | Request permission to write files not working.
-**13**  | 🟨 *In testing*  | **Emulator** | Request permission to write files not working.
+**14**  | ✅ **Completed** | **Physical** | Full Work
+**13**  | ✅ **Completed** | **Emulator** | Full Work
 **12**  | ✅ **Completed** | **Emulator** | Full Work
 **11**  | ✅ **Completed** | **Physical** | Full Work
 **10**  | ✅ **Completed** | **Emulator** | Full Work
@@ -19,8 +19,8 @@ Version | Status           | Type         | Notes
 
 Detected bugs in small ui's:
 
-- Not reduce the number size in circle id
-- Clear search button out of row container
+- Not reduce the number size in circle id (Fixed)
+- Clear search button out of row container (Fixed)
 
 Error in request permission to write:
 

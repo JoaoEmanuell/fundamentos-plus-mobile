@@ -10,8 +10,8 @@ Read the [test details](./docs/TESTS_DETAILS.md) for more information's.
 Version | Status           | Type         
 :--:    | :--:             | :--:         
 **15**  | ❌ *Not tested* 
-**14**  | 🟨 *In testing*  | **Physical**
-**13**  | 🟨 *In testing*  | **Emulator**
+**14**  | ✅ **Completed** | **Physical**
+**13**  | ✅ **Completed** | **Emulator**
 **12**  | ✅ **Completed** | **Emulator**
 **11**  | ✅ **Completed** | **Physical**
 **10**  | ✅ **Completed** | **Emulator**
@@ -19,6 +19,6 @@ Version | Status           | Type
 **8.0** | ✅ **Completed** | **Emulator**
 **7.0** | ✅ **Completed** | **Emulator**
 **6.0** | 🟨 **Completed** | **Emulator**
-**5.1** | 🟨 *Completed*   | **Emulator**
+**5.1** | 🟨 **Completed** | **Emulator**
 **5.0** | ✅ **Completed** | **Emulator**
 
