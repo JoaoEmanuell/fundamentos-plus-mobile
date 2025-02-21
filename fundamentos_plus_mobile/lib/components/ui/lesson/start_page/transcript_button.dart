@@ -8,17 +8,31 @@ import 'package:permission_handler/permission_handler.dart';
 
 GestureDetector transcriptButton(
     BuildContext context, String url, String filename) {
+  Future<bool> requestPermissions() async {
+    List<Permission> permissions = [
+      Permission.storage,
+      Permission.manageExternalStorage,
+      Permission.notification
+    ];
+    bool permissionsGranted = true;
+    for (Permission permission in permissions) {
+      PermissionStatus status = await permission.status;
+      if (status.isDenied) {
+        await permission.request();
+        permission.onDeniedCallback(() async {
+          permissionsGranted = false;
+        });
+      }
+    }
+    return permissionsGranted;
+  }
+
   Future<void> launchTranscription() async {
-    final writeDirsPermission = await Permission.storage.status;
-    if (writeDirsPermission.isDenied) {
-      await Permission.storage.request();
-      Permission.storage.onDeniedCallback(() async {
-        await showCustomDialog(
-            "Alerta",
-            "Para realizar o download você deve conceder as permissões necessárias!",
-            context);
-      });
-      Permission.storage.onGrantedCallback(launchTranscription);
+    if (!(await requestPermissions())) {
+      await showCustomDialog(
+          "Alerta",
+          "Para realizar o download você deve conceder as permissões necessárias!",
+          context);
     } else {
       Directory directory = Directory('/storage/emulated/0/Download');
       if (!directory.existsSync()) {
