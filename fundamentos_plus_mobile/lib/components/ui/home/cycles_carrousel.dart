@@ -20,7 +20,7 @@ CarouselView cyclesCarrousel(CyclesType cycles, BuildContext context) {
                 padding: const EdgeInsets.all(8.0),
                 child: circleId(int.parse(cycle),
                     borderRadius: 5,
-                    fontSize: 16,
+                    fontSize: 20,
                     width: 45,
                     height: 45,
                     activated: cycleData.unlocked),

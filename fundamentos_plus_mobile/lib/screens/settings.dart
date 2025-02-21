@@ -24,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        body: SafeArea(child: SingleChildScrollView(
             child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -88,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
           ),
-        )),
+        ))),
         bottomNavigationBar:
             bottomAppBarComponent(context, current: 'settings'));
   }

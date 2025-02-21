@@ -6,6 +6,7 @@ import 'package:fundamentos_plus_mobile/components/ui/home/cycles_carrousel.dart
 import 'package:fundamentos_plus_mobile/components/ui/lesson_preview.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
+import 'package:fundamentos_plus_mobile/utils/get_device_size.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,8 +24,9 @@ class _HomePageState extends State<HomePage> {
         DataController.userManagerInstance.getActualLesson();
 
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Center(
+        body: SafeArea(
+            child: SingleChildScrollView(
+                child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(
-                  width: 500,
+                  width: getDeviceSize().width / 2, // 1/2 for screen width
                   height: 75,
                   child: cyclesCarrousel(
                       DataController.dataManagerInstance.getCycles(), context),
@@ -68,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        )),
+        ))),
         bottomNavigationBar: bottomAppBarComponent(context));
   }
 }

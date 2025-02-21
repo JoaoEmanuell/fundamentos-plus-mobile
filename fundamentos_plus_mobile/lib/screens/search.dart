@@ -87,7 +87,7 @@ class _SearchPageState extends State<SearchPage> {
     statusText = _textWidgetStatus("Busque por uma palavra chave...");
     final upButton = upButtonWidget(_visibleUpButton, _scrollController);
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(child: SingleChildScrollView(
           controller: _scrollController,
           child: Center(
             child: Padding(
@@ -117,8 +117,7 @@ class _SearchPageState extends State<SearchPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.search, color: Colors.grey.shade500),
-                                SizedBox(
-                                    width: 225,
+                                Expanded(
                                     child: TextField(
                                       controller: fieldText,
                                       decoration: InputDecoration(
@@ -157,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-          )),
+          ))),
       bottomNavigationBar: bottomAppBarComponent(context, current: 'search'),
       floatingActionButton: upButton,
     );

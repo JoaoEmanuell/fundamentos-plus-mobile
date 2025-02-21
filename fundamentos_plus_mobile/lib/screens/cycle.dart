@@ -28,7 +28,7 @@ class _CyclePageState extends State<CyclePage> {
     }
     ScrollController scrollController = ScrollController();
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(child: SingleChildScrollView(
           controller: scrollController,
           child: Center(
             child: Padding(
@@ -39,7 +39,7 @@ class _CyclePageState extends State<CyclePage> {
                 children: <Widget>[...lessonsWidgets],
               ),
             ),
-          )),
+          ))),
       floatingActionButton: upButtonWidget(true, scrollController),
       appBar: AppBar(
         title: Text("${args.id} - $title",
