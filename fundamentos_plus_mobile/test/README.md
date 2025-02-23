@@ -1,7 +1,7 @@
 # Tests
 
 ```
-flutter test test
+flutter test --coverage
 ```
 
 # Components
@@ -50,9 +50,8 @@ flutter test test
         - [ ] *text*
     - [ ] *construct page*
     - [ ] *end page*
-  - [ ] **utils**
-    - [ ] *show custom dialog*
-    - [ ] *up button*
+  - [x] **utils**
+    - [x] *up button*
   - [x] *bottom app bar*
   - [x] *circle id*
   - [x] *cycle container*
