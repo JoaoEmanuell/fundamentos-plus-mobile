@@ -7,9 +7,9 @@ flutter test test
 # Components
 
 - [ ] **UI**
-  - [ ] **home**
-    - [ ] *actual lesson*
-    - [ ] *cycles carrousel*
+  - [x] **home**
+    - [x] *actual lesson*
+    - [x] *cycles carrousel*
   - [ ] **lesson**
     - [ ] **buttons**
       - [ ] *end floating*
