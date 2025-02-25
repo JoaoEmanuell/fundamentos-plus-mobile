@@ -17,7 +17,7 @@ class UserManager {
     _dataFile = File("${appDir.path}/data.json");
     if (!_dataFile.existsSync()) {
       _dataFile.createSync();
-    } else {
+    } else if (_dataFile.readAsStringSync().trim() != "") {
       final data = jsonDecode(_dataFile.readAsStringSync());
       _actualLesson = ActualLesson.fromJson(jsonDecode(data["actualLesson"]));
       _lessons = {};
