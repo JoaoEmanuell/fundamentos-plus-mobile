@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/buttons/end_floating_button.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/construct_page.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/end_page.dart';
@@ -7,6 +8,7 @@ import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/full_sta
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/start_floating_button.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
+import 'package:share_plus/share_plus.dart';
 
 class LessonPageArguments {
   late int id;
@@ -28,6 +30,7 @@ class _LessonPageState extends State<LessonPage> {
   late LessonPageArguments _args;
   bool _firstLessonLoad = true;
   final ScrollController _scrollController = ScrollController();
+  late String _selectableText;
 
   void nextPage() {
     setState(() {
@@ -107,17 +110,46 @@ class _LessonPageState extends State<LessonPage> {
     }
 
     return Scaffold(
-      body: SafeArea(child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 80.0),
-                child: _currentPage,
-              ),
-            ),
-          ))),
+      body: SafeArea(
+          child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 80.0),
+                    child: SelectionArea(
+                      child: _currentPage,
+                      onSelectionChanged: (value) {
+                        if (value!.plainText.isNotEmpty) {
+                          _selectableText = value.plainText;
+                        }
+                      },
+                      contextMenuBuilder: (context, editableTextState) {
+                        return AdaptiveTextSelectionToolbar.buttonItems(
+                            buttonItems: [
+                              ContextMenuButtonItem(
+                                label: 'Copiar',
+                                onPressed: () {
+                                  Clipboard.setData(
+                                      ClipboardData(text: _selectableText));
+                                  editableTextState.clearSelection();
+                                },
+                              ),
+                              ContextMenuButtonItem(
+                                label: 'Compartilhar',
+                                onPressed: () {
+                                  Share.share(_selectableText);
+                                  editableTextState.clearSelection();
+                                },
+                              ),
+                            ],
+                            anchors: editableTextState.contextMenuAnchors);
+                      },
+                    ),
+                  ),
+                ),
+              ))),
       appBar: AppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(

@@ -44,6 +44,7 @@ dependencies:
   string_validator: ^1.1.0
   confirm_dialog: ^1.0.4
   flutter_markdown: ^0.7.6+2
+  share_plus: ^10.1.4
 
 dev_dependencies:
   flutter_test:
