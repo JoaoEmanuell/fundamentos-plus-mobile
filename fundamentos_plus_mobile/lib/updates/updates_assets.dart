@@ -84,6 +84,10 @@ class UpdatesAssets {
       bool requestLast = await _requestTheLastRelease();
       await DataController.instance.load();
       return requestLast;
+    } on SocketException {
+      // without connection
+      await DataController.instance.load();
+      return false;
     } catch (e) {
       print(e);
       return false;
