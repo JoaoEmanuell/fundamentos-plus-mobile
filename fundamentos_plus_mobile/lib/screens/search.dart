@@ -81,45 +81,63 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
+  void clearSearch() {
+    fieldText.clear();
+    setState(() {
+      _searchLessonPreviews.clear();
+      _visibleTextSearchHint = true;
+      statusButton = _defaultStatus(context);
+      _visibleUpButton = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     statusButton = _defaultStatus(context);
     statusText = _textWidgetStatus("Busque por uma palavra chave...");
     final upButton = upButtonWidget(_visibleUpButton, _scrollController);
     return Scaffold(
-      body: SafeArea(child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 16,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                      child: Text(
-                        "Pesquisar",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.left,
-                      )),
-                  ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: DarkModeController.instance
-                                .getColorScheme()
-                                .secondary),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16, right: 16),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(Icons.search, color: Colors.grey.shade500),
-                                Expanded(
-                                    child: TextField(
+      body: SafeArea(
+          child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 16,
+                    children: <Widget>[
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                          child: Text(
+                            "Pesquisar",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          )),
+                      ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: DarkModeController.instance
+                                    .getColorScheme()
+                                    .secondary),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 16, right: 16),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Icon(Icons.search,
+                                        color: Colors.grey.shade500),
+                                    Expanded(
+                                        child: TextField(
                                       controller: fieldText,
+                                      onChanged: (value) => {
+                                        if (value.trim() == "") {clearSearch()}
+                                      },
                                       decoration: InputDecoration(
                                           hintText: "Pesquisar...",
                                           hintStyle: TextStyle(
@@ -127,36 +145,28 @@ class _SearchPageState extends State<SearchPage> {
                                           border: InputBorder.none,
                                           disabledBorder: InputBorder.none),
                                     )),
-                                GestureDetector(
-                                    onTap: () {
-                                      fieldText.clear();
-                                      setState(() {
-                                        _searchLessonPreviews.clear();
-                                        _visibleTextSearchHint = true;
-                                        statusButton = _defaultStatus(context);
-                                        _visibleUpButton = false;
-                                      });
-                                    },
-                                    child: Icon(Icons.cancel_outlined,
-                                        color: Colors.grey.shade500))
-                              ]),
-                        ),
-                      )),
-                  Visibility(
-                      visible: _visibleTextSearchHint,
-                      child: Center(
-                          child: Column(
+                                    GestureDetector(
+                                        onTap: clearSearch,
+                                        child: Icon(Icons.cancel_outlined,
+                                            color: Colors.grey.shade500))
+                                  ]),
+                            ),
+                          )),
+                      Visibility(
+                          visible: _visibleTextSearchHint,
+                          child: Center(
+                              child: Column(
+                            spacing: 16,
+                            children: [statusText, statusButton],
+                          ))),
+                      Column(
                         spacing: 16,
-                        children: [statusText, statusButton],
-                      ))),
-                  Column(
-                    spacing: 16,
-                    children: _searchLessonPreviews,
-                  )
-                ],
-              ),
-            ),
-          ))),
+                        children: _searchLessonPreviews,
+                      )
+                    ],
+                  ),
+                ),
+              ))),
       bottomNavigationBar: bottomAppBarComponent(context, current: 'search'),
       floatingActionButton: upButton,
     );
