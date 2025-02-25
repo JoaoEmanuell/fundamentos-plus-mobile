@@ -81,8 +81,9 @@ class UpdatesAssets {
       if (firstStart) {
         await _extractDefaultDataZip();
       }
+      bool requestLast = await _requestTheLastRelease();
       await DataController.instance.load();
-      return await _requestTheLastRelease();
+      return requestLast;
     } catch (e) {
       print(e);
       return false;

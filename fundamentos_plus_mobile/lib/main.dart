@@ -20,17 +20,16 @@ Future<void> main() async {
       ignoreSsl:
           true // option: set to false to disable working with http links (default: false)
       );
+  final updateAssets = UpdatesAssets();
+  await updateAssets.run();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final _updateAssets = UpdatesAssets();
-
+  const MyApp({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    _updateAssets.run();
     DarkModeController.instance.loadSavedTheme();
     return AnimatedBuilder(
         animation: DarkModeController.instance,
