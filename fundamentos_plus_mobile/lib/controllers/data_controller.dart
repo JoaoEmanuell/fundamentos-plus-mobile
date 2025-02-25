@@ -12,4 +12,10 @@ class DataController extends ChangeNotifier {
     await userManagerInstance.load();
     notifyListeners();
   }
+
+  Future<void> reloadUserManager() async {
+    // Used to reload the user data
+    await userManagerInstance.load();
+    notifyListeners();
+  }
 }

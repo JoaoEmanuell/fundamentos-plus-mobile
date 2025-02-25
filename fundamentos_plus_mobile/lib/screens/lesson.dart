@@ -29,12 +29,14 @@ class _LessonPageState extends State<LessonPage> {
   late Widget _actionButton;
   late LessonPageArguments _args;
   bool _firstLessonLoad = true;
+  bool _startedLesson = false;
   final ScrollController _scrollController = ScrollController();
   late String _selectableText;
 
   void nextPage() {
     setState(() {
       _currentPageIndex++;
+      _startedLesson = true;
       if (_currentPageIndex < _lesson.pages.length) {
         _currentPage = constructPage(_lesson.pages[_currentPageIndex]);
         setLessonProgress();
@@ -62,6 +64,7 @@ class _LessonPageState extends State<LessonPage> {
       _currentPageIndex = -1;
       _currentPage = fullStartPage(context, _args, _lesson);
       _actionButton = startFloatingButton(nextPage);
+      _startedLesson = false;
     });
     dynamic actualPageProgress = DataController.userManagerInstance
         .getLessonProgress(_args.id)
@@ -104,7 +107,7 @@ class _LessonPageState extends State<LessonPage> {
     _lesson = DataController.dataManagerInstance.getLessonFromCycle(_args.id);
     if (_currentPageIndex == -1) {
       loadInitialPage();
-    } else if (_currentPageIndex < _lesson.pages.length) {
+    } else if (_currentPageIndex < _lesson.pages.length && _startedLesson) {
       _actionButton =
           nextAndPreviewButton(nextPage, previousPage, _scrollController);
     }
@@ -150,8 +153,21 @@ class _LessonPageState extends State<LessonPage> {
                   ),
                 ),
               ))),
-      appBar: AppBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              if (_currentPageIndex == -1 || !_startedLesson) {
+                DataController.instance.reloadUserManager();
+                Navigator.of(context).pop();
+              } else {
+                loadInitialPage();
+              }
+            },
+            icon: Icon(Icons.arrow_back)),
+      ),
+      floatingActionButtonLocation: !_startedLesson
+          ? FloatingActionButtonLocation.endFloat
+          : FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(left: _currentPageIndex == -1 ? 150 : 0),
         child: _actionButton,
