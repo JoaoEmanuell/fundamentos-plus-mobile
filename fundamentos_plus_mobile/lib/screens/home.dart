@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(
-                  width: getDeviceSize().width / 2, // 1/2 for screen width
+                  width: getDeviceSize().width / 1.1,
                   height: 75,
                   child: cyclesCarrousel(
                       DataController.dataManagerInstance.getCycles(), context),

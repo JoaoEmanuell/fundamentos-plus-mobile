@@ -28,7 +28,7 @@ Widget fullStartPage(
       children: <Widget>[
         Row(
           children: [
-            circleId(args.id, width: 40, height: 40, fontSize: 24),
+            circleId(args.id, width: 40, height: 40, fontSize: 19),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),

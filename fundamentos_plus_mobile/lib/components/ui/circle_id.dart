@@ -28,9 +28,9 @@ ClipRRect circleId(dynamic id,
 
 double _getFontSize(dynamic id, double fontSize) {
   Size deviceSize = getDeviceSize();
-  if (deviceSize.width <= 1080) {
+  if (deviceSize.width < 360) {
     // for small ui's
     return (int.parse(id.toString()) < 100 ? fontSize / 1.2 : fontSize / 1.8);
   }
-  return (int.parse(id.toString()) < 100 ? fontSize : fontSize / 1.3);
+  return (int.parse(id.toString()) < 100 ? fontSize / 1.2 : fontSize / 1.3);
 }

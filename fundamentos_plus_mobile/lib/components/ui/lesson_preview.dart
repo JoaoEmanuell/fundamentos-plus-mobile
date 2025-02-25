@@ -36,8 +36,7 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Image.asset(
                   convertAuthorNameInAssetName(lesson.author, "cycles_thumbs"),
-                  width: getDeviceSize().width / 4,
-                  height: getDeviceSize().height / 6,
+                  height: getDeviceSize().height / 3,
                 ),
               ),
               Row(
@@ -54,7 +53,7 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: circleId(lesson.id,
-                                    width: 40, height: 40, fontSize: 20),
+                                    width: 40, height: 40, fontSize: 19),
                               ),
                               Expanded(
                                 child: Text(
@@ -76,7 +75,6 @@ GestureDetector lessonPreview(BuildContext context, LessonType lesson,
                                       Icons.star,
                                       color: Colors.amber,
                                       size: 18,
-                                      // width: 18,
                                     ),
                                   )),
                                   TextSpan(
