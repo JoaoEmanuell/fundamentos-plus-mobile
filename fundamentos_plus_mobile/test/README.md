@@ -14,8 +14,8 @@ flutter test --coverage
     - [x] **buttons**
       - [x] *end floating*
       - [x] *next and preview*
-    - [ ] **preview**
-      - [ ] *action button*
+    - [x] **preview**
+      - [x] *action button*
     - [ ] **start page**
       - [ ] *full start page*
       - [ ] *lesson video*
