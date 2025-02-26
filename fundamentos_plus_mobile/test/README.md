@@ -11,9 +11,9 @@ flutter test --coverage
     - [x] *actual lesson*
     - [x] *cycles carrousel*
   - [ ] **lesson**
-    - [ ] **buttons**
-      - [ ] *end floating*
-      - [ ] *next and preview*
+    - [x] **buttons**
+      - [x] *end floating*
+      - [x] *next and preview*
     - [ ] **preview**
       - [ ] *action button*
     - [ ] **start page**
