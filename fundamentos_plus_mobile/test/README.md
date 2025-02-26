@@ -48,8 +48,8 @@ flutter test --coverage
         - [ ] *text green*
         - [ ] *text highlight*
         - [ ] *text*
-    - [ ] *construct page*
-    - [ ] *end page*
+    - [x] *construct page*
+    - [x] *end page*
   - [x] **utils**
     - [x] *up button*
   - [x] *bottom app bar*
