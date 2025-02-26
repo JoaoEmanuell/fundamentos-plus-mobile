@@ -16,11 +16,11 @@ flutter test --coverage
       - [x] *next and preview*
     - [x] **preview**
       - [x] *action button*
-    - [ ] **start page**
-      - [ ] *full start page*
-      - [ ] *lesson video*
-      - [ ] *start floating button*
-      - [ ] *transcription button*
+    - [x] **start page**
+      - [x] *full start page*
+      - [x] *lesson video*
+      - [x] *start floating button*
+      - [x] *transcription button*
     - [ ] **styles**
       - [ ] **green**
         - [ ] *green background title*
