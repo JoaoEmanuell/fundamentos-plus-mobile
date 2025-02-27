@@ -22,7 +22,7 @@ Desenvolvido com Flutter, o aplicativo funciona totalmente offline, permitindo q
 
 ## Demonstração
 
-<video src="./docs/video.mp4" width="1280" height="720" controls></video>
+![Demo gif](./docs/video.gif)
 
 ## Funcionalidades
 

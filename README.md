@@ -22,7 +22,7 @@ Developed with Flutter, the app works entirely offline, allowing users to access
 
 ## Demo
 
-<video src="./docs/video.mp4" width="1280" height="720" controls></video>
+![Demo gif](./docs/video.gif)
 
 ## Features
 
@@ -92,7 +92,7 @@ For more details on tests, see the documentation available [here](./docs/TESTS_D
 
 Version | Status            | Type         
 :--:    | :--:              | :--:         
-**15**  | ❌ *Not tested*  |
+**15**  | ❌ *Not tested*   |
 **14**  | ✅ **Completed**  | **Physical**
 **13**  | ✅ **Completed**  | **Emulator**
 **12**  | ✅ **Completed**  | **Emulator**
@@ -101,8 +101,8 @@ Version | Status            | Type
 **9.0** | ✅ **Completed**  | **Emulator**
 **8.0** | ✅ **Completed**  | **Emulator**
 **7.0** | ✅ **Completed**  | **Emulator**
-**6.0** | 🟨 **Partially tested** | **Emulator**
-**5.1** | 🟨 **Partially tested** | **Emulator**
+**6.0** | ✅ **Completed**  | **Emulator**
+**5.1** | ✅ **Completed**  | **Emulator**
 **5.0** | ✅ **Completed**  | **Emulator**
 
 ## Contributing
