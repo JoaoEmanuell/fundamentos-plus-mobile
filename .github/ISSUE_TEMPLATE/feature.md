@@ -1,3 +1,0 @@
-# Feature
-
-Describe the feature
