@@ -1,7 +1,6 @@
 String clearQueryStrings(String query) {
   List<String> clearQuery = [
     'green-title',
-    "text",
     'text-bold',
     'bible-text',
     'green-separator',
@@ -14,13 +13,14 @@ String clearQueryStrings(String query) {
     'table-with-green-header',
     'list-with-gray-background',
     'check-list',
-    'image',
     'text-highlight',
     'green-background-title',
     'frame-with-title-and-border',
     'list-with-arrow',
     'multi-text',
     'multi-bible',
+    "text",
+    'image',
     '{',
     '}',
     '[',
@@ -28,7 +28,7 @@ String clearQueryStrings(String query) {
     '|',
   ];
   for (String clear in clearQuery) {
-    if (clear == query) {
+    if (query.contains(clear)) {
       query = query.replaceAll(clear, "");
     }
   }
