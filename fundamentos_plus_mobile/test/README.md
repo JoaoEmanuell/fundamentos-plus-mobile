@@ -56,3 +56,8 @@ flutter test --coverage
   - [x] *cycle container*
   - [x] *lesson preview*
   - [x] *search lesson preview*
+- [x] **Utils**
+  - [x] *clear query strings*
+  - [x] *convert author name in asset name*
+  - [x] *convert hex color in color*
+  - [x] *format date*
