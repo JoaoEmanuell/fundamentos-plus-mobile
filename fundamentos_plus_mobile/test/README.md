@@ -6,11 +6,11 @@ flutter test --coverage
 
 # Components
 
-- [ ] **UI**
+- [x] **UI**
   - [x] **home**
     - [x] *actual lesson*
     - [x] *cycles carrousel*
-  - [ ] **lesson**
+  - [x] **lesson**
     - [x] **buttons**
       - [x] *end floating*
       - [x] *next and preview*
@@ -21,33 +21,32 @@ flutter test --coverage
       - [x] *lesson video*
       - [x] *start floating button*
       - [x] *transcription button*
-    - [ ] **styles**
-      - [ ] **green**
-        - [ ] *green background title*
-        - [ ] *green separator*
-        - [ ] *green title*
-        - [ ] *sub green title*
-      - [ ] **list**
-        - [ ] *checklist*
-        - [ ] *list with arrow*
-        - [ ] *list with gray background*
-        - [ ] *list with number green button with text*
-      - [ ] **others**
-        - [ ] *frame with title and border*
-        - [ ] *image*
-      - [ ] **table**
-        - [ ] *table with green header*
-        - [ ] *table with index*
-      - [ ] **text**
-        - [ ] *bible*
-        - [ ] *bold*
-        - [ ] *italic*
-        - [ ] *multi bible*
-        - [ ] *multi text*
-        - [ ] *text for complement reading*
-        - [ ] *text green*
-        - [ ] *text highlight*
-        - [ ] *text*
+    - [x] **styles**
+      - [x] **green**
+        - [x] *green background title*
+        - [x] *green separator*
+        - [x] *green title*
+        - [x] *sub green title*
+      - [x] **list**
+        - [x] *checklist*
+        - [x] *list with arrow*
+        - [x] *list with gray background*
+        - [x] *list with number green button with text*
+      - [x] **others**
+        - [x] *frame with title and border*
+      - [x] **table**
+        - [x] *table with green header*
+        - [x] *table with index*
+      - [x] **text**
+        - [x] *bible*
+        - [x] *bold*
+        - [x] *italic*
+        - [x] *multi bible*
+        - [x] *multi text*
+        - [x] *text for complement reading*
+        - [x] *text green*
+        - [x] *text highlight*
+        - [x] *text*
     - [x] *construct page*
     - [x] *end page*
   - [x] **utils**
