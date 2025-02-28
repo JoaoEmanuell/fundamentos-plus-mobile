@@ -7,6 +7,7 @@ import 'package:fundamentos_plus_mobile/components/ui/lesson/buttons/next_and_pr
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/full_start_page.dart';
 import 'package:fundamentos_plus_mobile/components/ui/lesson/start_page/start_floating_button.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
+import 'package:fundamentos_plus_mobile/data/firebase_user_data_manager.dart';
 import 'package:fundamentos_plus_mobile/utils/types.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -157,6 +158,7 @@ class _LessonPageState extends State<LessonPage> {
         leading: IconButton(
             onPressed: () {
               if (_currentPageIndex == -1 || !_startedLesson) {
+                FirebaseUserDataManager.sendToFirebase();
                 DataController.instance.reloadUserManager();
                 Navigator.of(context).pop();
               } else {

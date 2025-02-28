@@ -29,16 +29,7 @@ class UserManager {
   }
 
   void save() {
-    Map<String, dynamic> lessonsEncode = {
-      "lessons": {},
-    };
-    for (final lesson in _lessons.keys) {
-      lessonsEncode["lessons"][lesson.toString()] =
-          _lessons[lesson]!.toJsonString();
-    }
-
-    lessonsEncode["actualLesson"] = _actualLesson.toJsonString();
-    _dataFile.writeAsStringSync(jsonEncode(lessonsEncode));
+    _dataFile.writeAsStringSync(jsonEncode(encodeLesson()));
   }
 
   void setActualLesson(ActualLesson lesson) {
@@ -70,5 +61,18 @@ class UserManager {
     _lessons = {};
     _actualLesson = ActualLesson(id: -1, title: "");
     _dataFile.deleteSync();
+  }
+
+  Map<String, dynamic> encodeLesson() {
+    Map<String, dynamic> lessonsEncode = {
+      "lessons": {},
+    };
+    for (final lesson in _lessons.keys) {
+      lessonsEncode["lessons"][lesson.toString()] =
+          _lessons[lesson]!.toJsonString();
+    }
+
+    lessonsEncode["actualLesson"] = _actualLesson.toJsonString();
+    return lessonsEncode;
   }
 }

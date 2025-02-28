@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
+import 'package:fundamentos_plus_mobile/data/firebase_user_data_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -34,6 +35,8 @@ class _SettingsPageState extends State<SettingsPage> {
       idToken: googleAuth?.idToken,
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
+    await FirebaseUserDataManager.downloadForFirebase();
+    await DataController.instance.load();
   }
 
   void signOutGoogle() async {
@@ -96,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: Text(
                       user.isEmpty
                           ? "Fazer login com Google"
-                          : "Sair com o Google",
+                          : "Sair da sincronização",
                       style: TextStyle(
                           color: user.isEmpty ? Colors.black : Colors.white),
                     )),
@@ -113,8 +116,15 @@ class _SettingsPageState extends State<SettingsPage> {
                           .onSurface;
                       if (await confirm(context,
                           title: Text("Apagar"),
-                          content: Text(
-                              "Deseja realmente apagar os dados? Isso é irreversível."),
+                          content: Column(
+                            spacing: 16,
+                            children: [
+                              Text(
+                                  "Deseja realmente apagar os dados? Isso é irreversível."),
+                              Text(
+                                  "Nota: Se estiver conectado com o Google, isso também apagará os dados online")
+                            ],
+                          ),
                           textOK: Text(
                             "Sim",
                             style: TextStyle(color: textColor),
@@ -124,6 +134,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             style: TextStyle(color: textColor),
                           ))) {
                         DataController.userManagerInstance.clearUserData();
+                        await FirebaseUserDataManager.deleteFirebaseData();
                       }
                     },
                     child: Text(
