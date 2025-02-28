@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
@@ -12,6 +14,8 @@ import 'package:fundamentos_plus_mobile/updates/updates_assets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   // Plugin must be initialized before using
   await FlutterDownloader.initialize(
@@ -50,7 +54,27 @@ class MyApp extends StatelessWidget {
                   "/": (context) => HomePage(),
                   "/cycles": (context) => CyclesPage(),
                   "/search": (context) => SearchPage(),
-                  "/settings": (context) => SettingsPage(),
+                  "/settings": (context) => StreamBuilder<User?>(
+                      stream: FirebaseAuth.instance.authStateChanges(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasError) {
+                          return Text(snapshot.error.toString());
+                        }
+                        if (snapshot.connectionState ==
+                            ConnectionState.active) {
+                          if (snapshot.data == null) {
+                            return SettingsPage();
+                          } else {
+                            return SettingsPage(
+                              firebaseUser: FirebaseAuth
+                                  .instance.currentUser!.displayName,
+                            );
+                          }
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }),
                   "/cycle": (context) => CyclePage(),
                   "/lesson": (context) => LessonPage(),
                   //"/style_test": (context) => PageStyleTest(),

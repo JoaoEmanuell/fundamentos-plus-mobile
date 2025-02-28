@@ -1,11 +1,14 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fundamentos_plus_mobile/components/ui/bottom_app_bar_component.dart';
 import 'package:fundamentos_plus_mobile/controllers/dark_mode_controller.dart';
 import 'package:fundamentos_plus_mobile/controllers/data_controller.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  final String? firebaseUser;
+  const SettingsPage({super.key, this.firebaseUser});
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -21,11 +24,35 @@ class _SettingsPageState extends State<SettingsPage> {
     DarkModeController.instance.setTheme(value);
   }
 
+  void signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  void signOutGoogle() async {
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
+    String user = "";
+
+    if (widget.firebaseUser != null) {
+      user = widget.firebaseUser!;
+    }
+
     return Scaffold(
-        body: SafeArea(child: SingleChildScrollView(
-            child: Center(
+        body: SafeArea(
+            child: SingleChildScrollView(
+                child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -40,6 +67,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     textAlign: TextAlign.left,
                   ),
                 ),
+                Visibility(
+                    visible: user.isNotEmpty,
+                    child: Text(user.isNotEmpty ? "Bem vindo: $user" : "")),
                 Padding(
                   padding: const EdgeInsets.only(right: 16, left: 16),
                   child: Row(
@@ -55,6 +85,21 @@ class _SettingsPageState extends State<SettingsPage> {
                     ],
                   ),
                 ),
+                ElevatedButton(
+                    onPressed: user.isEmpty ? signInWithGoogle : signOutGoogle,
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                          (Set<WidgetState> states) {
+                        return user.isEmpty ? Colors.grey.shade400 : Colors.red;
+                      }),
+                    ),
+                    child: Text(
+                      user.isEmpty
+                          ? "Fazer login com Google"
+                          : "Sair com o Google",
+                      style: TextStyle(
+                          color: user.isEmpty ? Colors.black : Colors.white),
+                    )),
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.resolveWith<Color?>(
